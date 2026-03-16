@@ -9,7 +9,7 @@ import bt1 from './assets/img/bt1.jpeg'
 import bt2 from './assets/img/bt2.jpeg'
 import bt3 from './assets/img/bt3.jpeg'
 import menuImg from './assets/img/menu.jpeg'
-import heroBg from './assets/img/Screenshot_2026-02-11_at_2.23-01.jpg'
+import heroBg from './assets/new img/home img.jpg'
 import galleryImg1 from './assets/img/DSC07756.JPG'
 import galleryImg2 from './assets/img/Screenshot_2026-02-11_at_2.27.56_AM.png'
 import galleryImg3 from './assets/img/DSC07715.JPG'
@@ -64,6 +64,31 @@ const redirectToCheckout = (productId, quantity = 1) => {
   window.location.href = `${baseUrl}?${params.toString()}`;
 };
 
+const FAQItem = ({ question, answer }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <div className={`faq-item ${isOpen ? 'active' : ''}`}>
+      <div className="faq-question" onClick={() => setIsOpen(!isOpen)}>
+        <h3>{question}</h3>
+        <span className="faq-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s ease' }}>
+            <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </span>
+      </div>
+      <div className="faq-answer-wrapper" style={{ 
+        maxHeight: isOpen ? '1000px' : '0', 
+        overflow: 'hidden', 
+        transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+        opacity: isOpen ? 1 : 0,
+        paddingTop: isOpen ? '15px' : '0'
+      }}>
+        <div className="faq-answer">{answer}</div>
+      </div>
+    </div>
+  );
+};
+
 function Navbar({ isScrolled }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -75,6 +100,8 @@ function Navbar({ isScrolled }) {
           <a href="#about">ABOUT</a>
           <a href="#ownership">OWNERSHIP</a>
           <a href="#community">COMMUNITY</a>
+          <a href="/presale/?view=menu">STORE</a>
+          <a href="#contact">CONTACT</a>
         </div>
 
         <a href="/presale/" className="nav-logo">
@@ -82,10 +109,8 @@ function Navbar({ isScrolled }) {
         </a>
 
         <div className="nav-links right">
-          <a href="/presale/?view=menu">PRODUCTS</a>
-          <a href="#contact">CONTACT</a>
-          <a href="#" className="nav-btn" onClick={() => redirectToCheckout('1934')}>GIFTCARD</a>
-          <a href="/presale/?view=menu" className="nav-btn primary">PRE ORDER NOW</a>
+          <a href="#" className="nav-btn giftcard" onClick={() => redirectToCheckout('1934')}>GIFTCARD</a>
+          <a href="/presale/?view=menu" className="nav-btn pre-order">PRE ORDER NOW</a>
         </div>
 
         <button className="menu-toggle" aria-label="Toggle menu" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -230,19 +255,19 @@ function Section1() {
       <div className="container">
         <div className="bread-flex-container">
           <div className="bread-content">
-            <h2 className="section-heading">REAL BREAD, NO<br />SHORTCUTS</h2>
+            <h2 className="section-heading">JOIN OUR<br />BREAD CLUB</h2>
             <p className="section-subtext">
-              Our Certified Organic, sourdough breads are made
-              with water, salt and organic wheat, transformed
-              through the unhurried magic of fermentation. In a
-              world that moves fast, we proudly go slow.
+              Our sourdough breads are made with water, salt
+              and organic wheat, transformed through the
+              unhurried magic of fermentation. In a world that
+              moves fast, we proudly go slow.
             </p>
             <button
               onClick={() => redirectToCheckout('1930')}
               className="bread-link"
-              style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
+              style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', textAlign: 'left' }}
             >
-              Pre Order Now <span>⟶</span>
+              Subscribe for fresh bread each week <span className="arrow-span">⟶</span>
             </button>
           </div>
           <div className="bread-grid">
@@ -312,125 +337,223 @@ const Section2 = () => {
     redirectToCheckout('1929', shares);
   };
 
+  const faqs = [
+    {
+      question: "What is community ownership at 24 Karat Bakery?",
+      answer: "24 Karat Bakery is a community-owned cooperative. That means customers, neighbors, and supporters can become owners, not just shoppers. Community ownership helps us keep baking jobs local and fair, invest in quality ingredients and craft, and grow without corporate control."
+    },
+    {
+      question: "What Does It Mean to Be a Community Owner?",
+      answer: "As a Community Member, you receive: One vote in community-level co-op decisions, a voice in the future of the bakery, invitations to member events and meetings, eligibility for patronage distributions (if declared), and the pride of supporting a worker-owned local bakery. Ownership is about participation and stewardship, not speculation."
+    },
+    {
+      question: "What Community Ownership Is Not",
+      answer: "To be clear and transparent: It is NOT a stock purchase, NOT a guaranteed financial return, NOT a short-term investment, and NOT transferable or resellable. Community ownership is membership equity governed by our bylaws."
+    },
+    {
+      question: "Community Ownership Contribution",
+      answer: "One-time ownership contribution: $250. One member = one vote. Additional contributions do not increase voting power. Contributions are recorded as member equity."
+    },
+    {
+      question: "How to Become a Community Owner?",
+      answer: "Complete the ownership contribution through our website. You'll receive a welcome email and membership materials. Your membership becomes active once your contribution is received and the membership agreement is acknowledged."
+    },
+    {
+      question: "Prefer to Join In Person?",
+      answer: "You can also sign up at our bakery or at farmers markets and community events (after we're open!). Look for the \"Become an Owner\" sign or ask a team member."
+    },
+    {
+      question: "Transparency & Disclosure",
+      answer: "Community ownership contributions are membership equity in 24 Karat Bakery Co-op. They are not deposits, donations, or securities, and do not guarantee financial returns. Ownership rights and responsibilities are governed by the co-op's bylaws."
+    },
+    {
+      question: "Questions?",
+      answer: "Email us at: hello@24karatbakery.com. We're happy to explain how co-op ownership works."
+    }
+  ];
+
   return (
-    <section id="ownership" className="founding-member">
+    <section id="ownership" className="founding-member ownership-movement-unified">
       <div className="container">
-        <h2 className="section-title text-white">BE A FOUNDING MEMBER AS LOW AS $100</h2>
-        <p className="section-description text-white">
-          Join us in building a community-owned bakery. By becoming a founding member,
-          you’re supporting local food systems, sustainable practices, and a business designed to
-          serve its neighbors. Your ownership share connects you to a network of members who
-          believe in good bread, fair practices, and a stronger local economy.
-        </p>
+        <div className="ownership-intro-block">
+          <h2 className="section-title text-white anton-font">JOIN THE MOVEMENT, BE A<br />FOUNDING MEMBER AS LOW AS $100</h2>
+          <p className="section-description text-white">
+            Join us in building a community-owned bakery. By becoming a founding member,
+            you’re supporting local food systems, sustainable practices, and a business designed to
+            serve its neighbors. Your ownership share connects you to a network of members who
+            believe in good bread, fair practices, and a stronger local economy.
+          </p>
+          <div className="intro-actions">
+            <a href="#" className="bylaws-btn">READ THE BYLAWS</a>
+          </div>
+        </div>
 
         <div className="tiers-grid">
           <div className="tiers-wrapper">
             <div className="tier-card">
-              <h3>COMMUNITY MEMBER<br /><span>1+ OWNERSHIP SHARE</span></h3>
-              <p className="tier-intro">For individuals who want to co-own the bakery. Includes:</p>
-              <ul>
-                <li>1 or more co-op shares</li>
-                <li>Lifetime membership</li>
-                <li>1 vote in community governance</li>
-                <li>Member-only perks</li>
-              </ul>
-              <div className="tier-price">$100</div>
+              <div className="tier-header">
+                <h3>COMMUNITY MEMBER</h3>
+                <span className="share-count">1+ OWNERSHIP SHARE</span>
+              </div>
+              <div className="tier-body">
+                <p className="perks-title">Perks</p>
+                <p className="tier-description">For individuals who want to co-own the bakery. Includes:</p>
+                <ul className="mockup-perks">
+                  <li>1 or more co-op shares</li>
+                  <li>Lifetime membership</li>
+                  <li>1 vote in community governance</li>
+                  <li>Member-only perks</li>
+                </ul>
+              </div>
+              <div className="tier-footer">
+                <div className="tier-price">$100</div>
+              </div>
             </div>
 
             <div className="tier-card">
-              <h3>GOLD MEMBER<br /><span>3+ OWNERSHIP SHARE</span></h3>
-              <p className="tier-intro">For supporters who want deeper involvement. Includes everything from previous tier plus:</p>
-              <ul>
-                <li>3 or more co-op shares</li>
-                <li>Premium physical member card</li>
-                <li>Discount on purchases</li>
-                <li>Exclusive tastings & events</li>
-                <li>Priority access to new products</li>
-              </ul>
-              <div className="tier-price">$300</div>
+              <div className="tier-header">
+                <h3>GOLD MEMBER</h3>
+                <span className="share-count">3+ OWNERSHIP SHARE</span>
+              </div>
+              <div className="tier-body">
+                <p className="perks-title">Perks</p>
+                <p className="tier-description">For supporters who want deeper involvement. Includes everything from previous tier plus:</p>
+                <ul className="mockup-perks">
+                  <li>3 or more co-op shares</li>
+                  <li>Premium physical member card</li>
+                  <li>Discount on purchases</li>
+                  <li>Exclusive tastings & events</li>
+                  <li>Priority access to new products</li>
+                </ul>
+              </div>
+              <div className="tier-footer">
+                <div className="tier-price">$300</div>
+              </div>
             </div>
 
             <div className="tier-card">
-              <h3>FOUNDING MEMBER<br /><span>10+ OWNERSHIP SHARE</span></h3>
-              <p className="tier-intro">For early leaders and major supporters. Includes everything from previous tier plus:</p>
-              <ul>
-                <li>10+ or more co-op shares</li>
-                <li>Founding member recognition for the first 100 members</li>
-                <li>Invitation to Annual Strategic Forum with Worker Leadership</li>
-                <li>Private tasting experience</li>
-                <li>Limited-edition gift</li>
-                <li>Quarterly wholesale pricing window</li>
-              </ul>
-              <div className="tier-price">$1000</div>
+              <div className="tier-header">
+                <h3>FOUNDING MEMBER</h3>
+                <span className="share-count">10+ OWNERSHIP SHARE</span>
+              </div>
+              <div className="tier-body">
+                <p className="perks-title">Perks</p>
+                <p className="tier-description">For early leaders and major supporters. Includes everything from previous tier plus:</p>
+                <ul className="mockup-perks">
+                  <li>10+ or more co-op shares</li>
+                  <li>Founding member recognition for the first 100 members</li>
+                  <li>Invitation to Annual Strategic Forum with Worker Leadership</li>
+                  <li>Private tasting experience</li>
+                  <li>Limited-edition gift</li>
+                  <li>Quarterly wholesale pricing window</li>
+                </ul>
+              </div>
+              <div className="tier-footer">
+                <div className="tier-price">$1000</div>
+              </div>
             </div>
           </div>
 
           <div className="membership-widget">
             <div className="widget-header">
-              <span>Own</span>
+              <span>How many shares<br />would you like to buy?</span>
               <div className="share-inputs">
-                <input
-                  type="text"
-                  value="1"
-                  className={shares === 1 ? "active" : ""}
+                <div 
+                  className={`share-option ${shares === 1 ? "active" : ""}`}
                   onClick={() => setShares(1)}
-                  readOnly
-                />
-                <input
-                  type="text"
-                  value="3"
-                  className={shares === 3 ? "active" : ""}
+                >1</div>
+                <div 
+                  className={`share-option ${shares === 3 ? "active" : ""}`}
                   onClick={() => setShares(3)}
-                  readOnly
-                />
-                <input
-                  type="text"
-                  value="10"
-                  className={shares === 10 ? "active" : ""}
+                >3</div>
+                <div 
+                  className={`share-option ${shares === 10 ? "active" : ""}`}
                   onClick={() => setShares(10)}
-                  readOnly
-                />
-                <input
-                  type="number"
-                  value={shares !== 1 && shares !== 3 && shares !== 10 ? shares : ''}
-                  placeholder="Cust"
-                  className={shares !== 1 && shares !== 3 && shares !== 10 ? "active" : ""}
-                  onChange={(e) => {
-                    const val = parseInt(e.target.value);
-                    if (!isNaN(val)) {
-                      setShares(val);
-                    } else if (e.target.value === '') {
-                      setShares(0);
-                    }
-                  }}
-                  style={{ width: '60px' }}
-                />
-                <span className="unit">shares</span>
+                >10</div>
+                
+                <div className="custom-share-container keyboard-input">
+                  <input
+                    type="number"
+                    placeholder={shares === 0 || shares === 1 || shares === 3 || shares === 10 ? "+" : ""}
+                    value={shares !== 1 && shares !== 3 && shares !== 10 && shares !== 0 ? shares : ""}
+                    className={`share-option ${shares !== 1 && shares !== 3 && shares !== 10 && shares !== 0 ? "active" : ""}`}
+                    onChange={(e) => {
+                      const val = parseInt(e.target.value);
+                      if (!isNaN(val)) setShares(val);
+                      else setShares(0);
+                    }}
+                    onFocus={(e) => {
+                      if (shares === 1 || shares === 3 || shares === 10) {
+                         // Switch to custom mode by clearing presets
+                         setShares(0);
+                      }
+                    }}
+                  />
+                </div>
               </div>
             </div>
 
             <div className="widget-body">
-              <p className="tier-badge-widget">{tierInfo.name}</p>
-              <ul className="widget-perks">
-                {tierInfo.perks.map((perk, i) => (
-                  <li key={i}>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="check-icon">
-                      <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                    {perk}
-                  </li>
-                ))}
-              </ul>
+              <div className="tier-badge-mockup">{tierInfo.name} perks</div>
+              <div className="scrollable-perks">
+                <ul className="cumulative-perks-list">
+                  {/* Community Perks */}
+                  {shares >= 1 && (
+                    <>
+                      <li className="perk-category">COMMUNITY PERKS</li>
+                      <li>1 or more co-op shares</li>
+                      <li>Lifetime membership</li>
+                      <li>1 vote in community governance</li>
+                      <li>Member-only perks</li>
+                    </>
+                  )}
+                  {/* Gold Perks */}
+                  {shares >= 3 && (
+                    <>
+                      <li className="perk-divider"></li>
+                      <li className="perk-category">GOLD PERKS</li>
+                      <li>Premium physical member card</li>
+                      <li>Discount on purchases</li>
+                      <li>Exclusive tastings & events</li>
+                      <li>Priority access to new products</li>
+                    </>
+                  )}
+                  {/* Founding Perks */}
+                  {shares >= 10 && (
+                    <>
+                      <li className="perk-divider"></li>
+                      <li className="perk-category">FOUNDING PERKS</li>
+                      <li>Founding member recognition (first 100)</li>
+                      <li>Annual Strategic Forum access</li>
+                      <li>Private tasting experience</li>
+                      <li>Limited-edition gift</li>
+                      <li>Quarterly wholesale pricing window</li>
+                    </>
+                  )}
+                </ul>
+              </div>
             </div>
 
             <div className="widget-footer">
               <div className="total-row">
                 <span>Total:</span>
-                <span className="total-price">${total}</span>
+                <span className="total-price">${total}{total >= 1000 ? '+' : ''}</span>
               </div>
-              <button className="checkout-btn" onClick={handleCheckout}>Checkout</button>
-              <p className="community-note">2.5% of your purchase goes back into our community.</p>
+              <button className="checkout-btn-mockup" onClick={handleCheckout}>Checkout</button>
+              <p className="community-note-mockup">2.5% of your purchase goes back into our community.</p>
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* FAQ Section (Merged & Accordion) */}
+      <div className="faq-section-new">
+        <div className="container">
+          <h2 className="faq-main-title anton-font">FREQUENTLY ASKED QUESTIONS</h2>
+          <div className="faq-list">
+            {faqs.map((faq, index) => (
+              <FAQItem key={index} question={faq.question} answer={faq.answer} />
+            ))}
           </div>
         </div>
       </div>
@@ -440,16 +563,18 @@ const Section2 = () => {
 
 const Section3 = () => {
   return (
-    <section id="community" className="waitlist-section">
+    <section id="community" className="waitlist-section ownership-movement">
       <div className="container">
         <div className="waitlist-flex">
           <div className="waitlist-content">
-            <h2 className="section-title">Bring 24 Karat to<br />Your Community</h2>
+            <h2 className="section-title">JOIN THE MOVEMENT, BE A<br />FOUNDING MEMBER AS LOW AS $100</h2>
             <p className="section-description">
-              We aren’t a traditional chain; we’re a cooperative. Our goal is to seed locally
-              owned 24 Karat Bakeries across Chicago and beyond—run by the people, for the people.
-              Are you ready to lead the charge?
+              Join us in building a community-owned bakery. By becoming a founding member,
+              you’re supporting local food systems, sustainable practices, and a business designed to
+              serve its neighbors. Your ownership share connects you to a network of members who
+              believe in good bread, fair practices, and a stronger local economy.
             </p>
+            <a href="#" className="bylaws-btn">READ THE BYLAWS</a>
           </div>
 
           <div className="waitlist-card">

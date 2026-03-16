@@ -4,6 +4,7 @@ body {
   padding: 0 !important;
   width: 100% !important;
   height: 100% !important;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 #root,
@@ -106,6 +107,28 @@ body {
   background: #372720;
   color: white !important;
   border-color: #372720;
+}
+
+.nav-btn.pre-order {
+  background: transparent;
+  color: white !important;
+  border: 1px solid white;
+}
+
+.nav-btn.giftcard {
+  background: transparent;
+  color: white !important;
+  border: none;
+}
+
+.navbar.scrolled .nav-btn.pre-order {
+  color: #372720 !important;
+  border-color: #372720;
+}
+
+.navbar.scrolled .nav-btn.giftcard {
+  color: #372720 !important;
+  border: none;
 }
 
 /* Mobile Toggle - Improved Hit Area & Glass Effect */
@@ -379,6 +402,7 @@ body {
   width: 100%;
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   position: relative;
   display: flex;
   align-items: center;
@@ -483,7 +507,7 @@ body {
 .bread-flex-container {
   display: flex;
   gap: 60px;
-  align-items: flex-start;
+  align-items: center;
   width: 100%;
 }
 
@@ -516,15 +540,19 @@ body {
   font-size: 1rem;
   color: #4a4a4a;
   text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 15px;
+  display: flex; /* Flex is best for centering */
+  align-items: center; /* Centered vertically on the line */
+  gap: 12px;
+  white-space: nowrap; /* Forces everything onto one line */
   transition: opacity 0.3s ease;
+  line-height: 1;
 }
 
-.bread-link span {
+.arrow-span {
   font-size: 1.5rem;
-  line-height: 0;
+  line-height: 1;
+  display: inline-block;
+  flex-shrink: 0; /* Prevents arrow from shrinking */
 }
 
 .bread-link:hover {
@@ -539,9 +567,10 @@ body {
 }
 
 .bread-card {
-  height: 350px; /* Landscape height */
+  aspect-ratio: 3 / 4; /* Portrait shape as per latest screenshot */
+  width: 100%;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 0;
 }
 
 .bread-card img {
@@ -563,17 +592,26 @@ body {
     max-width: 800px;
     flex: none;
     padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
 
 @media (max-width: 768px) {
   .bread-grid {
-    display: none;
-    /* Hide the 3-image grid on mobile to bring Pre Order button up */
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    width: 100%;
+    margin-top: 20px;
   }
 
   .bread-card {
-    height: 400px;
+    aspect-ratio: 3 / 4;
+    width: 100%;
+    max-width: 400px; /* Prevent images from becoming too large on mobile */
+    margin: 0 auto;
   }
 
   .bread-content {
@@ -619,7 +657,7 @@ body {
 .founding-member .section-description {
   text-align: center;
   max-width: 900px;
-  margin: 0 auto 50px;
+  margin: 0 auto 30px;
   font-size: clamp(0.9rem, 2.5vw, 1rem); /* Reduced from 1.1rem */
   line-height: 1.6;
   font-family: 'Montserrat', sans-serif;
@@ -627,7 +665,7 @@ body {
 
 .tiers-grid {
   display: flex; /* Changed to flex for easier layout control */
-  gap: 25px;
+  gap: 20px;
   align-items: flex-start; /* Stop cards from stretching to widget height */
   width: 100%;
   margin: 0;
@@ -636,7 +674,7 @@ body {
 .tiers-wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
+  gap: 20px;
   flex: 3; /* Spans 3 parts */
   align-items: stretch; /* Cards within match each other's height */
 }
@@ -644,68 +682,117 @@ body {
 /* Ensure the widget stays the correct width */
 .membership-widget {
   flex: 1;
+  min-height: 600px; /* Match tier card height for stability */
 }
 
 .tier-card {
   border: 1px solid rgba(246, 244, 227, 0.4);
-  padding: 35px 25px;
+  padding: 0 25px 20px; /* Left/Right and Bottom padding */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   text-align: center;
-  /* min-height: 400px; - Removed to allow card to end naturally */
+  min-height: 680px; /* Ensure consistency */
+  flex: 1;
+}
+
+.tier-header {
+  height: 100px; /* Slightly more room to be safe */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Align content to the top! */
+  width: 100%;
+  padding-top: 20px;
 }
 
 .tier-card h3 {
   font-family: 'Anton', sans-serif;
-  font-size: clamp(1.3rem, 5vw, 1.8rem);
-  margin-bottom: 15px;
-  line-height: 1.1;
+  font-size: clamp(1.2rem, 5vw, 1.8rem);
+  margin-bottom: 2px;
+  line-height: 1;
   width: 100%;
+  text-transform: uppercase;
 }
 
-.tier-card h3 span {
+.share-count {
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   display: block;
-  margin-top: 5px;
-  font-weight: 400;
+  margin-bottom: 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.perks-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  text-transform: capitalize;
+  color: #f6f4e3;
+  width: 100%;
+  text-align: center;
+}
+
+.tier-description {
+  font-size: 0.75rem;
+  margin-bottom: 15px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  line-height: 1.4;
+  max-width: 95%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .tier-intro {
-  font-size: 0.75rem; /* Reduced from 0.85rem */
-  margin-bottom: 20px;
+  font-size: 0.8rem;
+  margin-bottom: 5px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
   line-height: 1.3;
+}
+
+.perks-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .tier-card ul {
   list-style: none;
   padding: 0;
   margin: 0;
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: flex-start; /* Don't center vertically */
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
 }
 
 .tier-card li {
-  font-size: 0.75rem; /* Reduced from 0.85rem */
-  margin-bottom: 12px; /* Slightly tighter spacing */
+  font-size: 0.8rem; /* Reduced from 0.85rem */
+  margin-bottom: 15px;
   line-height: 1.4;
   font-family: 'Montserrat', sans-serif;
+  color: #f6f4e3;
 }
 
 .tier-price {
   font-family: 'Anton', sans-serif;
-  font-size: clamp(2rem, 10vw, 3rem);
-  margin-top: auto; /* Push price to bottom to ensure alignment across same-height cards */
-  padding-top: 20px;
+  font-size: clamp(3rem, 15vw, 6rem);
+  margin-top: auto;
+  padding-top: 0;
+  padding-bottom: 5px; /* Minimal padding for border alignment */
   text-align: center;
-  line-height: 1;
+  line-height: 0.8;
   width: 100%;
+  color: white;
 }
 
 /* Membership Widget */
@@ -2119,6 +2206,499 @@ body {
     flex-direction: column;
     gap: 20px;
   }
+  .container,
+  .nav-container {
+    padding: 0 20px;
+  }
+
+  .bread-link {
+    white-space: normal; /* Allow text to wrap on mobile */
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  .sub-header-content {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .search-bar {
+    width: 100%;
+  }
+}
+
+/* --- Section 2 Ownership Refinement (Mockup Match) --- */
+.founding-member.ownership-movement-unified {
+  background-color: #421C15 !important;
+  color: white !important;
+  padding: 120px 0;
+  text-align: center;
+}
+
+.anton-font {
+  font-family: 'Anton', sans-serif !important;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+/* Restoring standalone Section 3 styles */
+.waitlist-section.ownership-movement {
+  background-color: #421C15 !important;
+  color: white !important;
+  padding: 100px 0;
+}
+
+.ownership-intro-block {
+  max-width: 900px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.ownership-intro-block .section-title {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.05;
+  margin-bottom: 30px;
+}
+
+.ownership-intro-block .section-description {
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 40px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.intro-actions {
+  margin-top: 40px;
+}
+
+.bylaws-btn {
+  display: inline-block;
+  background-color: #F6F4E3;
+  color: #421C15 !important;
+  padding: 18px 45px;
+  border-radius: 50px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  transition: transform 0.3s ease;
+}
+
+.tiers-grid {
+  display: flex;
+  gap: 30px;
+  margin-top: 80px;
+  align-items: stretch;
+}
+
+.tiers-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  flex: 3;
+}
+
+.tier-card {
+  border: 1px solid white;
+  padding: 40px 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  background: transparent;
+}
+
+.tier-card h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.2rem;
+  line-height: 1.2;
+  margin-bottom: 25px;
+}
+
+.tier-card h3 span {
+  font-weight: 400;
+  font-size: 0.9rem;
+  display: block;
+  margin-top: 5px;
+}
+
+.tier-body p {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.mockup-perks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.tier-price {
+  font-family: 'Anton', sans-serif;
+  font-size: 4rem;
+  margin-top: 30px;
+  line-height: 1;
+}
+
+/* Membership Widget Refinement */
+.membership-widget {
+  background: white;
+  color: #372720;
+  padding: 30px;
+  border-radius: 15px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.widget-header span {
+  font-weight: 800;
+  font-size: 0.95rem;
+  display: block;
+  line-height: 1.3;
+  margin-bottom: 15px;
+}
+
+.share-inputs {
+  background: #f0f0f0;
+  padding: 5px;
+  border-radius: 50px;
+  display: flex;
+  gap: 5px;
+  margin-bottom: 25px;
+}
+
+.share-inputs input {
+  border: none;
+  background: transparent;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  text-align: center;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.share-inputs input.active {
+  background: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.unlock-status {
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.tier-badge-mockup {
+  background: #fdf6c6;
+  color: #372720;
+  padding: 10px 18px;
+  display: inline-block;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  letter-spacing: 0.05em;
+}
+
+.scrollable-perks {
+  max-height: 180px;
+  overflow-y: auto;
+  text-align: left;
+  padding-right: 10px;
+  margin-top: 10px;
+}
+
+.scrollable-perks::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollable-perks::-webkit-scrollbar-thumb {
+  background: rgba(55, 39, 32, 0.2);
+  border-radius: 10px;
+}
+
+.cumulative-perks-list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.cumulative-perks-list li {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  margin-bottom: 8px;
+  color: #372720;
+  font-weight: 500;
+  display: flex;
+  align-items: flex-start;
+}
+
+.cumulative-perks-list li::before {
+  content: "•";
+  margin-right: 8px;
+  color: #c4a163;
+}
+
+.cumulative-perks-list li.perk-category {
+  font-weight: 800;
+  font-size: 0.75rem;
+  color: #c4a163;
+  margin-bottom: 12px;
+  margin-top: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cumulative-perks-list li.perk-category::before {
+  display: none;
+}
+
+.cumulative-perks-list li.perk-category:first-of-type {
+  margin-top: 0;
+}
+
+.cumulative-perks-list li.perk-divider {
+  height: 1px;
+  background: rgba(55, 39, 32, 0.1);
+  margin: 15px 0;
+}
+
+.cumulative-perks-list li.perk-divider::before {
+  display: none;
+}
+
+/* Share Option Circle */
+.share-option {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: 700;
+  background: white;
+  transition: all 0.2s ease;
+  color: #372720;
+}
+
+.share-option.active {
+  background: #372720;
+  color: white;
+  border-color: #372720;
+}
+
+.custom-share-container input {
+  width: 42px !important;
+  height: 42px !important;
+  border-radius: 50% !important;
+  border: 1px solid #ddd !important;
+  text-align: center !important;
+  font-weight: 700 !important;
+  background: white !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  padding: 0 !important;
+  color: #372720 !important;
+  font-size: 1rem !important;
+  appearance: textfield; /* Remove arrows */
+  -moz-appearance: textfield;
+}
+
+.custom-share-container input::-webkit-outer-spin-button,
+.custom-share-container input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.custom-share-container input::placeholder {
+  color: #372720;
+  font-size: 1.4rem;
+  line-height: 42px;
+}
+
+/* Keyboard Input Circle */
+.custom-share-container.keyboard-input input {
+  width: 42px !important;
+  height: 42px !important;
+  border-radius: 50% !important;
+  border: 1px solid #ddd !important;
+  text-align: center !important;
+  font-weight: 700 !important;
+  background: white !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  padding: 0 !important;
+  color: #372720 !important;
+  font-size: 1rem !important;
+  appearance: textfield;
+  -moz-appearance: textfield;
+  outline: none;
+}
+
+.custom-share-container.keyboard-input input::-webkit-outer-spin-button,
+.custom-share-container.keyboard-input input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.custom-share-container.keyboard-input input::placeholder {
+  color: #372720;
+  font-size: 1.4rem;
+  line-height: 42px;
+}
+
+.custom-share-container.keyboard-input input.active {
+  background: #372720 !important;
+  color: white !important;
+  border-color: #372720 !important;
+}
+
+.custom-share-container.keyboard-input input.active::placeholder {
+  color: transparent !important;
+}
+
+.community-gold-founding {
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1.4;
+  margin-bottom: 25px;
+}
+
+.widget-footer {
+  margin-top: auto;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+  margin-bottom: 15px;
+}
+
+.checkout-btn-mockup {
+  width: 100%;
+  background: #1a1a1a;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 8px;
+  font-weight: 800;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.community-note-mockup {
+  font-size: 0.7rem;
+  color: #888;
+}
+
+/* FAQ Refinement */
+.faq-section-new {
+  margin-top: 100px;
+  text-align: left;
+}
+
+.faq-main-title {
+  font-size: 2.22rem;
+  margin-bottom: 40px;
+}
+
+.faq-item {
+  border-top: 1.2px solid rgba(255, 255, 255, 0.4);
+  border-bottom: none;
+}
+
+.plus-circle-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  background: white;
+  color: #372720;
+  font-size: 1.4rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  padding: 0;
+  line-height: 1;
+}
+
+.plus-circle-btn:hover {
+  background: #f0f0f0;
+  border-color: #ccc;
+}
+
+.custom-val-circle {
+  font-size: 0.9rem;
+  min-width: 42px; /* Ensure same size as presets */
+}
+
+/* FAQ question text color fix */
+.faq-question h3 {
+  font-size: 1.1rem;
+  color: white !important;
+  opacity: 1 !important;
+}
+
+.faq-answer {
+  padding-bottom: 25px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 0.95rem;
+  color: white !important;
+  line-height: 1.6;
+  max-width: 900px;
+}
+
+.faq-answer {
+  padding-bottom: 25px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  color: white;
+  line-height: 1.6;
+  max-width: 900px;
+}
+
+@media (max-width: 1200px) {
+  .tiers-grid { flex-direction: column; }
+  .tiers-wrapper { grid-template-columns: repeat(1, 1fr); }
+}
+
+/* Adjust card headlines to accommodate "perks" label */
+.tier-card h3 {
+  position: relative;
+}
+
+.tier-card h3 span.perks-label {
+  display: block;
+  font-size: 0.8rem;
+  color: #c4a163;
+  text-transform: uppercase;
+  margin-top: 5px;
 }
 
 /* ==========================================================================
@@ -2380,5 +2960,69 @@ body {
   
   #payment {
     padding: 20px 15px;
+  }
+}
+
+/* --- Ultra-Wide Responsiveness (2K / 4K Support) --- */
+
+@media (min-width: 2000px) {
+  .container {
+    max-width: 1600px;
+  }
+  
+  .nav-container {
+    max-width: 1700px;
+  }
+
+  .section-heading {
+    font-size: clamp(2.2rem, 5vw, 3.5rem) !important;
+  }
+
+  .section-subtext {
+    font-size: clamp(1rem, 2vw, 1.2rem) !important;
+    max-width: 800px;
+  }
+  
+  .bread-card {
+    aspect-ratio: 3 / 4;
+  }
+
+  .bread-content {
+    flex: 0 0 450px;
+  }
+}
+
+@media (min-width: 3000px) {
+  .container {
+    max-width: 2200px;
+  }
+
+  .nav-container {
+    max-width: 2400px;
+  }
+
+  .section-heading {
+    font-size: clamp(3.5rem, 6vw, 5rem) !important;
+  }
+
+  .section-subtext {
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem) !important;
+    max-width: 1000px;
+  }
+
+  .bread-content {
+    flex: 0 0 600px;
+  }
+
+  .bread-link {
+    font-size: 1.4rem;
+  }
+
+  .arrow-span {
+    font-size: 2rem;
+  }
+  
+  .bread-card {
+    aspect-ratio: 3 / 4;
   }
 }
