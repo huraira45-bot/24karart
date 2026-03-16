@@ -2245,12 +2245,13 @@ body {
 }
 
 .product-sub-header {
-  margin-top: 80px; /* Offset to start below the fixed navbar */
+  position: fixed;
+  top: 80px; /* Below the fixed navbar */
+  left: 0;
+  width: 100%;
   border-bottom: 2px solid #242725;
   padding: 15px 0;
   background: white;
-  position: sticky;
-  top: 80px; /* Stick exactly below the navbar */
   z-index: 100;
 }
 
@@ -2307,7 +2308,14 @@ body {
 }
 
 .menu-section {
-  padding: 60px 0;
+  padding: 40px 0 60px;
+}
+
+.menu-page-container {
+  padding-top: 150px; /* Total offset: Navbar (80) + SubHeader (~70) */
+  background-color: white;
+  min-height: 100vh;
+  padding-bottom: 100px;
 }
 
 .product-grid-v2 {
@@ -2457,6 +2465,9 @@ body {
     top: 60px; /* Adjusted for smaller mobile navbar */
     padding: 10px 0;
   }
+  .menu-page-container, .product-detail-page {
+    padding-top: 120px; /* Adjust offset for mobile */
+  }
   .sub-header-container {
     flex-wrap: wrap;
     justify-content: center;
@@ -2494,13 +2505,14 @@ body {
 
 /* --- Product Detail Page Styles --- */
 .product-detail-page {
+  padding-top: 150px; /* Total offset: Navbar (80) + SubHeader (~70) */
   background-color: white;
   min-height: 100vh;
   padding-bottom: 80px;
 }
 
 .detail-content-wrapper {
-  margin-top: 20px;
+  margin-top: 0;
 }
 
 .detail-layout {
