@@ -330,7 +330,7 @@ const allProducts = [
   }
 ];
 
-function ProductSubHeader() {
+function ProductSubHeader({ cartCount, onCartClick }) {
   return (
     <div id="now-in-season" className="product-sub-header">
       <div className="container sub-header-container">
@@ -339,8 +339,11 @@ function ProductSubHeader() {
           <input type="text" placeholder="Search Grocery Pickup & Delivery" />
           <svg className="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
         </div>
-        <div className="cart-link-v2">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <div className="cart-link-v2" onClick={onCartClick} style={{ cursor: 'pointer' }}>
+          <div className="cart-icon-wrapper">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
+          </div>
           <span>Cart</span>
         </div>
       </div>
@@ -348,12 +351,12 @@ function ProductSubHeader() {
   );
 }
 
-const ProductCardV2 = ({ item, onClick }) => {
+const ProductCardV2 = ({ item, onClick, onAddToCart }) => {
   return (
     <div className="product-card-v2" onClick={() => onClick && onClick(item.id)}>
       <div className="product-img-v2">
         <img src={item.img} alt={item.name} loading="lazy" />
-        <button className="add-btn-v2" onClick={(e) => { e.stopPropagation(); redirectToCheckout(item.id); }}>
+        <button className="add-btn-v2" onClick={(e) => { e.stopPropagation(); onAddToCart && onAddToCart(item); }}>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
             <line x1="12" y1="5" x2="12" y2="19"></line>
             <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -968,19 +971,19 @@ const Section6 = () => {
   );
 };
 
-const MenuPage = ({ onProductClick }) => {
+const MenuPage = ({ onProductClick, cartCount, onCartClick, onAddToCart }) => {
   const nowInSeasonProducts = allProducts.filter(p => p.category === "Now In Season");
   const presaleProducts = allProducts.filter(p => p.category === "Pre-Sale");
 
   return (
     <div className="menu-page-container">
-      <ProductSubHeader />
+      <ProductSubHeader cartCount={cartCount} onCartClick={onCartClick} />
       
       <section className="menu-section now-in-season-section-v2">
         <div className="container">
           <div className="product-grid-v2">
             {nowInSeasonProducts.map((item, i) => (
-              <ProductCardV2 key={i} item={item} onClick={onProductClick} />
+              <ProductCardV2 key={i} item={item} onClick={onProductClick} onAddToCart={onAddToCart} />
             ))}
           </div>
         </div>
@@ -996,7 +999,7 @@ const MenuPage = ({ onProductClick }) => {
           </div>
           <div className="product-grid-v2">
             {presaleProducts.map((item, i) => (
-              <ProductCardV2 key={i} item={item} onClick={onProductClick} />
+              <ProductCardV2 key={i} item={item} onClick={onProductClick} onAddToCart={onAddToCart} />
             ))}
           </div>
         </div>
@@ -1005,7 +1008,7 @@ const MenuPage = ({ onProductClick }) => {
   );
 };
 
-const ProductDetailPage = ({ productId, onProductClick }) => {
+const ProductDetailPage = ({ productId, onProductClick, onAddToCart, cartCount, onCartClick }) => {
   const product = useMemo(() => allProducts.find(p => p.id === productId), [productId]);
   const relatedProducts = useMemo(() => allProducts.filter(p => p.category === product?.category && p.id !== productId).slice(0, 5), [product, productId]);
 
@@ -1013,7 +1016,7 @@ const ProductDetailPage = ({ productId, onProductClick }) => {
 
   return (
     <div className="product-detail-page">
-      <ProductSubHeader />
+      <ProductSubHeader cartCount={cartCount} onCartClick={onCartClick} />
       
       <div className="container detail-content-wrapper">
         <div className="detail-layout">
@@ -1029,7 +1032,7 @@ const ProductDetailPage = ({ productId, onProductClick }) => {
             
             <div className="detail-divider"></div>
             
-            <button className="add-to-cart-big" onClick={() => redirectToCheckout(product.id)}>
+            <button className="add-to-cart-big" onClick={() => onAddToCart(product)}>
               ADD TO CART
             </button>
             
@@ -1075,6 +1078,83 @@ const ProductDetailPage = ({ productId, onProductClick }) => {
             ))}
           </div>
         </div>
+      </div>
+    </div>
+  );
+};
+
+const CartPage = ({ cart, onUpdateQuantity, onRemove, onCheckout, onCartClick, cartCount }) => {
+  const subtotal = useMemo(() => cart.reduce((sum, item) => sum + (parseFloat(item.price.replace('$', '')) * item.quantity), 0), [cart]);
+
+  return (
+    <div className="cart-page-container">
+      <ProductSubHeader cartCount={cartCount} onCartClick={onCartClick} />
+      
+      <div className="container cart-content-wrapper">
+        <h1 className="cart-title">YOUR CART</h1>
+        
+        {cart.length === 0 ? (
+          <div className="empty-cart-state">
+            <p>Your cart is currently empty.</p>
+            <a href="?view=menu" className="return-store-btn">BACK TO STORE</a>
+          </div>
+        ) : (
+          <div className="cart-layout">
+            <div className="cart-items-list">
+              <div className="cart-header-labels">
+                <span className="label-product">PRODUCT</span>
+                <span className="label-price">PRICE</span>
+                <span className="label-quantity">QUANTITY</span>
+                <span className="label-total">TOTAL</span>
+              </div>
+              
+              {cart.map((item) => (
+                <div key={item.id} className="cart-item-row">
+                  <div className="cart-item-info">
+                    <img src={item.img} alt={item.name} className="cart-item-img" />
+                    <div>
+                      <h3 className="cart-item-name">{item.name}</h3>
+                      <button className="remove-item-btn" onClick={() => onRemove(item.id)}>Remove</button>
+                    </div>
+                  </div>
+                  <div className="cart-item-price">
+                    {item.price.includes('$') && !item.price.includes('.') ? `${item.price}.00` : item.price}
+                  </div>
+                  <div className="cart-item-quantity">
+                    <div className="quantity-controls">
+                      <button onClick={() => onUpdateQuantity(item.id, item.quantity - 1)}>-</button>
+                      <span>{item.quantity}</span>
+                      <button onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}>+</button>
+                    </div>
+                  </div>
+                  <div className="cart-item-total">
+                    ${(parseFloat(item.price.replace('$', '')) * item.quantity).toFixed(2)}
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            <div className="cart-summary-card">
+              <h3>ORDER SUMMARY</h3>
+              <div className="summary-row">
+                <span>Subtotal</span>
+                <span>${subtotal.toFixed(2)}</span>
+              </div>
+              <div className="summary-row">
+                <span>Shipping</span>
+                <span>Calculated at checkout</span>
+              </div>
+              <div className="summary-divider"></div>
+              <div className="summary-row total">
+                <span>Total</span>
+                <span>${subtotal.toFixed(2)}</span>
+              </div>
+              <button className="checkout-btn-big" onClick={onCheckout}>
+                PROCEED TO CHECKOUT
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -1300,6 +1380,8 @@ function App() {
       if (product) {
         setSelectedProductId(product);
         setView('product');
+      } else if (params.get('view') === 'cart') {
+        setView('cart');
       } else if (params.get('view') === 'menu' || hash === '#now-in-season') {
         setView('menu');
       } else {
@@ -1323,9 +1405,54 @@ function App() {
     };
   }, []);
 
+  const [cart, setCart] = useState([]);
+
+  const addToCart = (product) => {
+    setCart(prev => {
+      const existing = prev.find(item => item.id === product.id);
+      if (existing) {
+        return prev.map(item => item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item);
+      }
+      return [...prev, { ...product, quantity: 1 }];
+    });
+    setView('cart');
+    const url = new URL(window.location);
+    url.searchParams.delete('product');
+    url.searchParams.set('view', 'cart');
+    window.history.pushState({}, '', url);
+  };
+
+  const updateQuantity = (id, newQty) => {
+    if (newQty < 1) {
+      removeFromCart(id);
+      return;
+    }
+    setCart(prev => prev.map(item => item.id === id ? { ...item, quantity: newQty } : item));
+  };
+
+  const removeFromCart = (id) => {
+    setCart(prev => prev.filter(item => item.id !== id));
+  };
+
+  const handleCartClick = () => {
+    setView('cart');
+    const url = new URL(window.location);
+    url.searchParams.delete('product');
+    url.searchParams.set('view', 'cart');
+    window.history.pushState({}, '', url);
+  };
+
+  const handleCheckout = () => {
+    // Redirect to the first item for now or implement bulk checkout
+    if (cart.length > 0) {
+      redirectToCheckout(cart[0].id, cart[0].quantity);
+    }
+  };
+
   const handleProductClick = (id) => {
     const url = new URL(window.location);
     url.searchParams.set('product', id);
+    url.searchParams.delete('view');
     window.history.pushState({}, '', url);
     setSelectedProductId(id);
     setView('product');
@@ -1336,7 +1463,31 @@ function App() {
     return (
       <div className="app product-view">
         <Navbar isScrolled={isScrolled} />
-        <ProductDetailPage productId={selectedProductId} onProductClick={handleProductClick} />
+        <ProductDetailPage 
+          productId={selectedProductId} 
+          onProductClick={handleProductClick} 
+          onAddToCart={addToCart}
+          cartCount={cart.length}
+          onCartClick={handleCartClick}
+        />
+        <FAQSection />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (view === 'cart') {
+    return (
+      <div className="app cart-view">
+        <Navbar isScrolled={isScrolled} />
+        <CartPage 
+          cart={cart}
+          onUpdateQuantity={updateQuantity}
+          onRemove={removeFromCart}
+          onCheckout={handleCheckout}
+          onCartClick={handleCartClick}
+          cartCount={cart.length}
+        />
         <FAQSection />
         <Footer />
       </div>
@@ -1347,7 +1498,12 @@ function App() {
     return (
       <div className="app menu-view">
         <Navbar isScrolled={isScrolled} />
-        <MenuPage onProductClick={handleProductClick} />
+        <MenuPage 
+          onProductClick={handleProductClick} 
+          cartCount={cart.length} 
+          onCartClick={handleCartClick} 
+          onAddToCart={addToCart}
+        />
         <FAQSection />
         <Footer />
       </div>
