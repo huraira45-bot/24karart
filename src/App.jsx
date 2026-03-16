@@ -1,19 +1,19 @@
 import { useState } from 'react'
 import './App.css'
 import logo from './assets/img/logo.webp'
-import storyImg1 from './assets/img/Screenshot_2026-02-11_at_2.27.56_AM.png'
-import storyImg2 from './assets/img/Screenshot_2026-02-11_at_2.29.01_AM.png'
+import storyImg1 from './assets/com/24-karat-bakery-community-rooted.JPG'
+import storyImg2 from './assets/com/24-karat-bakery-community-rooted-02.jpg'
 import presaleImg from './assets/img/DSC07756.JPG'
 import breadBg from './assets/img/breadbg.jpg'
 import bt1 from './assets/img/bt1.jpeg'
 import bt2 from './assets/img/bt2.jpeg'
 import bt3 from './assets/img/bt3.jpeg'
-import menuImg from './assets/img/menu.jpeg'
+import menuImg from './assets/PRESALEMENU/24-karat-bakery-presale-menu.jpg'
 import heroBg from './assets/new img/home img.jpg'
 import galleryImg1 from './assets/img/DSC07756.JPG'
 import galleryImg2 from './assets/img/Screenshot_2026-02-11_at_2.27.56_AM.png'
 import galleryImg3 from './assets/img/DSC07715.JPG'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import gridItemsImg from './assets/img/bakery_grid_items.png'
 import subscriptionImg from './assets/img/bread_subscription_hero.png'
 // Carousel Images
@@ -134,27 +134,244 @@ function Navbar({ isScrolled }) {
   );
 }
 
+const allProducts = [
+  {
+    id: '1936',
+    name: "BAKED COOKIE DOZEN",
+    price: "$36",
+    img: bakedCookieImg,
+    category: "Now In Season",
+    description: "● 12 artisan cookies\n● Mix of classic + globally inspired flavors",
+    productDetails: "A dozen handcrafted artisan cookies made with premium ingredients and careful technique. Each box features a mix of classic favorites and globally inspired flavors that rotate throughout the year. These cookies are baked fresh in small batches to deliver the perfect balance of crisp edges and soft centers. Ideal for sharing, gifting, or enjoying with a great cup of coffee.",
+    ingredients: "Our bakers take pride in sourcing from local farmers and creating treats with seasonal ingredients. While we can’t always anticipate exactly what will be available for your pickup, let us know if you have any allergy concerns. Contact us at hello@24karatbakery.com",
+    pickup: "yes",
+    delivery: "above orders of $80"
+  },
+  {
+    id: '1943',
+    name: "FROZEN COOKIE DOUGH DOZEN",
+    price: "$36",
+    img: frozenCookieImg,
+    category: "Now In Season",
+    description: "● 12 ready-to-bake dough portions\n● Bake fresh at home anytime",
+    productDetails: "Bring the bakery experience home with twelve ready-to-bake portions of our signature cookie dough. Each dough ball is pre-portioned so you can bake just one or the whole batch whenever the craving hits. The dough is made with the same premium ingredients we use in the bakery and freezes beautifully. Fresh, warm bakery cookies in your own kitchen, any time you want them.",
+    ingredients: "Our bakers take pride in sourcing from local farmers and creating treats with seasonal ingredients. While we can’t always anticipate exactly what will be available for your pickup, let us know if you have any allergy concerns. Contact us at hello@24karatbakery.com",
+    pickup: "yes",
+    delivery: "above orders of $80"
+  },
+  {
+    id: '1930',
+    name: "BREAD CLUB SUBSCRIPTION",
+    price: "$350",
+    img: breadClubImg,
+    category: "Now In Season",
+    description: "● 1 artisan loaf per week for 12 months\n● Priority access to limited breads\n● Founders Bread Card (VIP pickup)",
+    productDetails: "Join our Bread Club and make artisan bread a delicious part of your routine. Each tier offers freshly baked, seasonal loaves sourced from local ingredients, delivered or ready for pickup on your schedule. Whether you’re enjoying a weekly treat, exploring limited seasonal varieties, or indulging in half-year or full-year subscriptions, our bakers ensure every loaf is crafted with care. Choose the tier that fits your appetite and lifestyle, and let us bring the joy of fresh, hand-crafted bread straight to you.",
+    ingredients: "Our bakers take pride in sourcing from local farmers and creating treats with seasonal ingredients. While we can’t always anticipate exactly what will be available for your pickup, let us know if you have any allergy concerns. Contact us at hello@24karatbakery.com",
+    pickup: "yes",
+    delivery: "above orders of $80",
+    variants: [
+        { label: "$350 - Weekly Bread Subscription", price: "$350" },
+        { label: "$185 - Half-Year Bread Pass", price: "$185" },
+        { label: "$10/week - Weekly Bread Pass", price: "$10/week" }
+    ]
+  },
+  {
+    id: '1934',
+    name: "GIFTCARD",
+    price: "Custom",
+    img: storeGiftcardImg,
+    category: "Now In Season",
+    description: "Choose your amount",
+    productDetails: "• Digital gift card purchases are delivered via email and contain instructions on how the code can be redeemed at checkout.\n\n• The redeemable code will be sent via email and can also be printed at home and given to the recipient in person. No physical item will be sent with a digital gift card purchase.\n\n• Good for anything in the storefront, including all physical and digital products. Codes will apply to this storefront only.\n\n• Digital gift cards can be used multiple times until the card balance hits zero.",
+    pickup: "N/A",
+    delivery: "Digital Delivery"
+  },
+  {
+    id: '1931',
+    name: "FOUNDERS PASTRY BOX",
+    price: "$45",
+    img: pastryBoxImg,
+    category: "Pre-Sale",
+    description: "● 8–10 premium pastries (rotating seasonal selection)\n● Exclusive flavors only for presale supporters",
+    productDetails: "A rotating selection of 8–10 premium pastries created exclusively for presale supporters. Each box showcases seasonal ingredients and creative flavors that may not appear on the regular menu. These pastries are designed as a showcase of what the bakery is capable of when we experiment and innovate. Limited availability makes each box feel special and unique.",
+    ingredients: "Our bakers take pride in sourcing from local farmers and creating treats with seasonal ingredients. While we can’t always anticipate exactly what will be available for your pickup, let us know if you have any allergy concerns. Contact us at hello@24karatbakery.com",
+    pickup: "At the new bakery after opening",
+    delivery: "above orders of $80"
+  },
+  {
+    id: '1935',
+    name: "FOUNDERS PASTRY BOX TRIO BUNDLE",
+    price: "$120",
+    img: pastryTrioImg,
+    category: "Pre-Sale",
+    description: "3 pastry boxes (perfect for gifting or events)",
+    productDetails: "Three Founders Pastry Boxes bundled together for gatherings, gifts, or serious pastry lovers. Each box features rotating seasonal pastries and creative flavor combinations. This bundle is perfect for events, office sharing, or stocking up on multiple pickup days. It’s also one of the best ways to experience the full range of our pastry program.",
+    ingredients: "Our bakers take pride in sourcing from local farmers and creating treats with seasonal ingredients. While we can’t always anticipate exactly what will be available for your pickup, let us know if you have any allergy concerns. Contact us at hello@24karatbakery.com",
+    pickup: "At the new bakery after opening",
+    delivery: "above orders of $80"
+  },
+  {
+    id: '1933',
+    name: "SIGNATURE COOKIE SET",
+    price: "$70",
+    img: signatureCookieImg,
+    category: "Pre-Sale",
+    description: "● 24 cookies (Baked or Frozen Dough)\n● Limited-edition flavors",
+    productDetails: "A premium box of 24 cookies featuring some of our most creative and globally inspired flavors. These cookies are designed to highlight the bakery’s signature style, classic technique with unexpected influences. Available baked and ready to eat or as frozen dough to bake at home. Perfect for entertaining, gifting, or cookie enthusiasts.",
+    ingredients: "Our bakers take pride in sourcing from local farmers and creating treats with seasonal ingredients. While we can’t always anticipate exactly what will be available for your pickup, let us know if you have any allergy concerns. Contact us at hello@24karatbakery.com",
+    pickup: "At the new bakery after opening",
+    delivery: "above orders of $80"
+  },
+  {
+    id: '1947',
+    name: "PANTRY STAPLE BOX",
+    price: "$95",
+    img: pantryStapleImg,
+    category: "Pre-Sale",
+    description: "● House-made granola\n● Signature jam and honey butter\n● Specialty flour blend\n● Spiced sugar and salt blend\n● Recipe card set",
+    productDetails: "A curated collection of house-made bakery staples designed to bring our flavors into your home kitchen. The box includes house granola, signature jam, honey butter, and a specialty flour blend used in our baking. You’ll also receive our house spiced sugar and salt blends along with a recipe card set. It’s a simple way to recreate bakery magic at home.",
+    ingredients: "Our bakers take pride in sourcing from local farmers and creating treats with seasonal ingredients. While we can’t always anticipate exactly what will be available for your pickup, let us know if you have any allergy concerns. Contact us at hello@24karatbakery.com",
+    pickup: "At the new bakery after opening",
+    delivery: "above orders of $80"
+  },
+  {
+    id: '1938',
+    name: "DELUXE PANTRY BOX",
+    price: "$175",
+    img: deluxePantryImg,
+    category: "Pre-Sale",
+    description: "● House-made granola\n● Signature jam and honey butter\n● Specialty flour blend\n● Spiced sugar and salt blend\n● Recipe card set\n● Seasonal Bonus Items",
+    productDetails: "The Deluxe Pantry Box expands on our core pantry collection with seasonal bonus items and exclusive extras. Each box includes our house granola, signature jam, honey butter, specialty flour blend, and bakery spice blends. The recipe cards guide you through several of our favorite baking techniques and flavor combinations. This collection is perfect for passionate home bakers and food lovers.",
+    ingredients: "Our bakers take pride in sourcing from local farmers and creating treats with seasonal ingredients. While we can’t always anticipate exactly what will be available for your pickup, let us know if you have any allergy concerns. Contact us at hello@24karatbakery.com",
+    pickup: "At the new bakery after opening",
+    delivery: "above orders of $80"
+  },
+  {
+    id: '1942',
+    name: "FOUNDERS T-SHIRT",
+    price: "$35",
+    img: tshirtImg,
+    category: "Pre-Sale",
+    description: "● Heavyweight premium cotton\n● Minimal gold logo design\n● Founders Edition",
+    productDetails: "A premium heavyweight cotton t-shirt designed for comfort and durability. The shirt features a minimal gold 24 Karat logo representing the bakery’s founding supporters. This limited edition release celebrates the early community that helped build the bakery. Simple, timeless, and made to last. Design is not final, local artists will submit designs and a vote by community members will decide the final design.",
+    pickup: "At the new bakery after opening",
+    delivery: "above orders of $80"
+  },
+  {
+    id: '1939',
+    name: "FOUNDERS HOODIE",
+    price: "$85",
+    img: hoodieImg,
+    category: "Pre-Sale",
+    description: "● Luxury fleece hoodie\n● Embroidered 24 Karat logo\n● Limited-run numbering",
+    productDetails: "A luxury fleece hoodie designed to feel as good as it looks. Each piece features an embroidered 24 Karat logo and limited-run numbering for the Founders Edition release. Warm, durable, and crafted for everyday wear. A perfect way to represent the bakery and the community behind it. Design is not final, local artists will submit designs and a vote by community members will decide the final design.",
+    pickup: "At the new bakery after opening",
+    delivery: "above orders of $80"
+  },
+  {
+    id: '1937',
+    name: "24 KARAT COOKIE & PASTRY COOKBOOK, FOUNDER’S EDITION",
+    price: "$45",
+    img: cookbookImg,
+    category: "Pre-Sale",
+    description: "● 20-30 original recipes\n● Global cookie & pastry concepts\n● Co-op story + behind-the-scenes techniques",
+    productDetails: "This limited edition cookbook features 20–30 original cookie and pastry recipes developed in our kitchen. The recipes highlight globally inspired flavors and the techniques we use to achieve bakery-level results. Alongside the recipes are stories about the co-op model and the journey of building the bakery. A digital edition is included so you can bake anywhere.",
+    pickup: "At the new bakery after opening",
+    delivery: "above orders of $80"
+  },
+  {
+    id: '1936_bundle',
+    name: "24 KARAT COOKBOOK, COLLECTOR’S BUNDLE",
+    price: "$110",
+    img: cookbookBundleImg,
+    category: "Pre-Sale",
+    description: "● Limited Edition Cookbook\n● Pastry Box\n● Cookie Dozen (Baked or Frozen Dough)",
+    productDetails: "The Collector’s Bundle pairs our Founder’s Edition cookbook with a pastry box and a dozen cookies. It’s designed for customers who want to both learn the recipes and taste the finished creations. This bundle also makes an exceptional gift for passionate bakers and food lovers. A perfect introduction to the 24 Karat bakery experience.",
+    ingredients: "Our bakers take pride in sourcing from local farmers and creating treats with seasonal ingredients. While we can’t always anticipate exactly what will be available for your pickup, let us know if you have any allergy concerns. Contact us at hello@24karatbakery.com",
+    pickup: "At the new bakery after opening",
+    delivery: "above orders of $80"
+  },
+  {
+    id: '1945',
+    name: "GOLD SUPPORTER BUNDLE",
+    price: "$150",
+    img: goldBundleImg,
+    category: "Pre-Sale",
+    description: "● Pastry box\n● Founders t-shirt\n● Cookie Dozen (Baked or Frozen Dough)\n● 5 Artisan sourdough loaf vouchers",
+    productDetails: "The Gold Supporter Bundle combines some of our most popular items into one package. It includes a pastry box, a Founders t-shirt, a cookie dozen, and five artisan sourdough loaf vouchers. These vouchers can be redeemed anytime for fresh bread. This bundle is a great way to experience the bakery while supporting its launch.",
+    ingredients: "Our bakers take pride in sourcing from local farmers and creating treats with seasonal ingredients. While we can’t always anticipate exactly what will be available for your pickup, let us know if you have any allergy concerns. Contact us at hello@24karatbakery.com",
+    pickup: "At the new bakery after opening",
+    delivery: "above orders of $80"
+  },
+  {
+    id: '1948',
+    name: "PLATINUM BUNDLE",
+    price: "$350",
+    img: platinumBundleImg,
+    category: "Pre-Sale",
+    description: "● Bread for 6 months\n● Pantry staple box\n● Founders hoodie\n● Pastry box",
+    productDetails: "The Platinum Bundle is designed for our most dedicated early supporters. It includes six months of bread, a pantry staple box, a Founders hoodie, and a pastry box. This package delivers a full experience of what the bakery offers across bread, pastries, and pantry goods. It’s one of the most complete ways to participate in the bakery’s founding year.",
+    ingredients: "Our bakers take pride in sourcing from local farmers and creating treats with seasonal ingredients. While we can’t always anticipate exactly what will be available for your pickup, let us know if you have any allergy concerns. Contact us at hello@24karatbakery.com",
+    pickup: "At the new bakery after opening",
+    delivery: "above orders of $80"
+  },
+  {
+    id: '1946',
+    name: "LEGACY BUNDLE",
+    price: "$750",
+    img: legacyBundleImg,
+    category: "Pre-Sale",
+    description: "● Bread for a year\n● Deluxe pantry box\n● Hoodie + t-shirt\n● Cookbook\n● Signature cookie set\n● VIP Founders recognition",
+    productDetails: "The Legacy Bundle represents the deepest level of early support for the bakery. Members receive a full year of bread, a deluxe pantry box, a hoodie, t-shirt, cookbook, and signature cookie set. Supporters are also recognized as VIP Founders of the bakery. This bundle celebrates the people helping build the bakery from the very beginning.",
+    ingredients: "Our bakers take pride in sourcing from local farmers and creating treats with seasonal ingredients. While we can’t always anticipate exactly what will be available for your pickup, let us know if you have any allergy concerns. Contact us at hello@24karatbakery.com",
+    pickup: "At the new bakery after opening",
+    delivery: "above orders of $80"
+  }
+];
+
 function ProductSubHeader() {
   return (
     <div id="now-in-season" className="product-sub-header">
-      <div className="container">
-        <div className="sub-header-content">
-          <h2 className="now-in-season">NOW IN SEASON</h2>
-          <div className="search-bar">
-            <input type="text" placeholder="Search Grocery Pickup & Delivery" />
-            <button className="search-btn">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-            </button>
-          </div>
-          <div className="cart-total">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4H6z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-             <span>Cart</span>
-          </div>
+      <div className="container sub-header-container">
+        <h2 className="now-in-season-title">NOW IN SEASON</h2>
+        <div className="search-bar-v2">
+          <input type="text" placeholder="Search Grocery Pickup & Delivery" />
+          <svg className="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        </div>
+        <div className="cart-link-v2">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span>Cart</span>
         </div>
       </div>
     </div>
   );
 }
+
+const ProductCardV2 = ({ item, onClick }) => {
+  return (
+    <div className="product-card-v2" onClick={() => onClick && onClick(item.id)}>
+      <div className="product-img-v2">
+        <img src={item.img} alt={item.name} loading="lazy" />
+        <button className="add-btn-v2" onClick={(e) => { e.stopPropagation(); redirectToCheckout(item.id); }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </button>
+      </div>
+      <div className="product-info-v2">
+        <span className="p-price-v2">{item.price}</span>
+        <h4 className="p-name-v2">{item.name}</h4>
+        <p className="p-desc-v2">
+            {item.description.split('\n').map((line, idx) => (
+                <span key={idx}>{line}<br/></span>
+            ))}
+        </p>
+      </div>
+    </div>
+  );
+};
 
 function ProductGrid() {
   const products = [
@@ -563,22 +780,18 @@ const Section2 = () => {
 
 const Section3 = () => {
   return (
-    <section id="community" className="waitlist-section ownership-movement">
+    <section id="community" className="waitlist-section">
       <div className="container">
         <div className="waitlist-flex">
           <div className="waitlist-content">
-            <h2 className="section-title">JOIN THE MOVEMENT, BE A<br />FOUNDING MEMBER AS LOW AS $100</h2>
+            <h2 className="section-title">Bring 24 Karat to<br />Your Community</h2>
             <p className="section-description">
-              Join us in building a community-owned bakery. By becoming a founding member,
-              you’re supporting local food systems, sustainable practices, and a business designed to
-              serve its neighbors. Your ownership share connects you to a network of members who
-              believe in good bread, fair practices, and a stronger local economy.
+              We aren’t a traditional chain; we’re a cooperative. Our goal is to seed locally owned 24 Karat Bakeries across Chicago and beyond—run by the people, for the people. Are you ready to lead the charge?
             </p>
-            <a href="#" className="bylaws-btn">READ THE BYLAWS</a>
           </div>
 
           <div className="waitlist-card">
-            <h3>JOIN OUR WAITLIST!</h3>
+            <h3 className="waitlist-card-title">JOIN OUR WAITLIST!</h3>
             <div className="form-group">
               <p className="select-label">SELECT ALL THAT SOUNDS LIKE YOU:</p>
               <label className="checkbox-label">
@@ -594,7 +807,7 @@ const Section3 = () => {
 
             <div className="input-row">
               <div className="input-field">
-                <label>FIRST NAME</label>
+                <label>FISRT NAME</label>
                 <input type="text" />
               </div>
               <div className="input-field">
@@ -603,17 +816,19 @@ const Section3 = () => {
               </div>
             </div>
 
-            <div className="input-field">
+            <div className="input-field full-width">
               <label>EMAIL</label>
               <input type="email" />
             </div>
 
-            <div className="input-field">
+            <div className="input-field full-width">
               <label>ZIPCODE</label>
               <input type="text" />
             </div>
 
-            <button className="submit-btn">SUBMIT</button>
+            <div className="submit-container">
+              <button className="submit-btn-pill">SUBMIT</button>
+            </div>
           </div>
         </div>
       </div>
@@ -636,18 +851,16 @@ const Section4 = () => {
               FUTURE OWNED
             </h2>
             <p className="section-description">
-              From our beginnings in Chicago, 24 Karat Bakery Co-op was built on a simple idea:
-              good food, good jobs, and shared ownership should grow together. Today, we create
-              opportunity, empower worker-owners, and bring neighbors together through food that
-              nourishes both people and community.
+              From our beginnings in Chicago, 24 Karat Bakery Co-op was built on a simple idea: good food, good jobs, and shared ownership should grow together. Today, we create opportunity, empower worker-owners, and bring neighbors together through food that nourishes both people and community.
             </p>
-            <a href="#" className="story-link">Our story ———</a>
           </div>
         </div>
       </div>
     </section>
   );
 };
+
+
 
 const Section5 = () => {
   const carouselImages = [
@@ -699,13 +912,12 @@ const Section6 = () => {
           <div className="contact-content">
             <h2 className="section-title">WE WANT TO<br />HEAR FROM YOU</h2>
             <p className="section-description">
-              We’d love to hear from you! Whether you’re a customer, worker, entrepreneur,
-              or community supporter; you’re part of what makes our bakery co-op possible.
+              We’d love to hear from you! Whether you’re a customer, worker, entrepreneur, or community supporter; you’re part of what makes our bakery co-op possible.
             </p>
           </div>
           <div className="contact-form-card">
             <div className="form-header">
-              <h3>CONTACT US!</h3>
+              <h3 className="contact-card-title">CONTACT US!</h3>
               <p className="interest-label">I’M INTERESTED IN:</p>
               <div className="interest-options">
                 <label className="checkbox-item">
@@ -722,7 +934,7 @@ const Section6 = () => {
 
             <div className="input-row">
               <div className="input-field">
-                <label>FIRST NAME</label>
+                <label>FISRT NAME</label>
                 <input type="text" />
               </div>
               <div className="input-field">
@@ -730,23 +942,25 @@ const Section6 = () => {
                 <input type="text" />
               </div>
             </div>
-            <div className="input-field">
+            <div className="input-field full-width">
               <label>COMPANY (FOR BUSINESS)</label>
               <input type="text" />
             </div>
-            <div className="input-field">
+            <div className="input-field full-width">
               <label>EMAIL</label>
               <input type="email" />
             </div>
-            <div className="input-field">
+            <div className="input-field full-width">
               <label>SUBJECT</label>
               <input type="text" />
             </div>
-            <div className="input-field">
+            <div className="input-field full-width">
               <label>MESSAGE</label>
-              <textarea rows="4"></textarea>
+              <textarea rows="1"></textarea>
             </div>
-            <button className="send-btn">SEND MESSAGE</button>
+            <div className="submit-container">
+              <button className="submit-btn-pill">SEND MESSAGE</button>
+            </div>
           </div>
         </div>
       </div>
@@ -754,255 +968,189 @@ const Section6 = () => {
   );
 };
 
-const NowInSeasonSection = () => {
-  const categories = [
-    {
-      title: "SIGNATURE BAKERY COLLECTIONS",
-      items: [
-        {
-          id: '1931',
-          name: "Founders Pastry Box",
-          price: "$45",
-          img: pastryBoxImg,
-          perks: ["8–10 premium pastries (rotating seasonal selection)", "Exclusive flavors only for presale supporters", "Luxury gold-accent packaging"]
-        },
-        {
-          id: '1931', // Trio Bundle ID placeholder
-          name: "Founders Pastry Box Trio Bundle",
-          price: "$120",
-          img: pastryTrioImg,
-          perks: ["3 pastry boxes (perfect for gifting or events)"]
-        },
-        {
-          id: '1933',
-          name: "Baked Cookie Dozen",
-          price: "$36",
-          img: bakedCookieImg,
-          perks: ["12 artisan cookies", "Mix of classic + globally inspired flavors"]
-        },
-        {
-          id: '1933', // Frozen ID placeholder
-          name: "Frozen Cookie Dough Dozen",
-          price: "$36",
-          img: frozenCookieImg,
-          perks: ["12 ready-to-bake dough portions", "Bake fresh at home anytime"]
-        },
-        {
-          id: '1933', // Set ID placeholder
-          name: "Signature Cookie Set",
-          price: "$75",
-          img: signatureCookieImg,
-          perks: ["24 cookies (baked or dough)", "Limited-edition flavors + gold packaging"]
-        },
-        {
-          id: '1930',
-          name: "Weekly Bread Subscription",
-          price: "$300",
-          img: breadClubImg,
-          perks: ["1 artisan loaf per week for 12 months", "Priority access to limited breads", "Founders Bread Card (VIP pickup)"]
-        },
-        {
-          id: '1930', // Half year ID placeholder
-          name: "Half-Year Bread Pass",
-          price: "$150",
-          img: breadClubImg,
-          perks: ["1 loaf per week for 6 months"]
-        }
-      ]
-    },
-    {
-      title: "PANTRY & HOME COLLECTION",
-      items: [
-        {
-          id: 'pantry1',
-          name: "Pantry Staple Box",
-          price: "$95",
-          img: pantryStapleImg,
-          perks: ["House-made granola", "Signature jam or honey butter", "Specialty flour blend", "Spiced sugar or salt blend", "Recipe card set"]
-        },
-        {
-          id: 'pantry2',
-          name: "Deluxe Pantry Box",
-          price: "$180",
-          img: deluxePantryImg,
-          perks: ["Everything above + bonus seasonal items"]
-        }
-      ]
-    },
-    {
-      title: "LIMITED-EDITION MERCH",
-      items: [
-        {
-          id: 'merch1',
-          name: "Founders T-Shirt",
-          price: "$35",
-          img: tshirtImg,
-          perks: ["Heavyweight premium cotton", "Minimal gold logo design", "Founders Edition"]
-        },
-        {
-          id: 'merch2',
-          name: "Founders Hoodie",
-          price: "$85",
-          img: hoodieImg,
-          perks: ["Luxury fleece hoodie", "Embroidered 24 Karat logo", "Limited-run numbering"]
-        },
-        {
-          id: 'merch3',
-          name: "24 Karat Cookie & Pastry Cookbook",
-          price: "$40",
-          img: cookbookImg,
-          perks: ["Founders Edition (20-30 recipes)", "Global cookie & pastry concepts", "Co-op story + behind-the-scenes", "Signed digital edition included"]
-        },
-        {
-          id: 'merch4',
-          name: "Collector’s Bundle",
-          price: "$80",
-          img: cookbookBundleImg,
-          perks: ["Printed cookbook + pastry box + cookie dozen"]
-        }
-      ]
-    },
-    {
-      title: "BUNDLES (BEST VALUE)",
-      isBundle: true,
-      items: [
-        {
-          id: 'bundle1',
-          name: "Gold Supporter Bundle",
-          price: "$150",
-          img: goldBundleImg,
-          perks: ["Pastry box", "Founders t-shirt", "Cookie dozen (baked or dough)"]
-        },
-        {
-          id: 'bundle2',
-          name: "Platinum Bundle",
-          price: "$350",
-          img: platinumBundleImg,
-          perks: ["Bread for 6 months", "Pantry staple box", "Founders hoodie", "Pastry box"]
-        },
-        {
-          id: 'bundle3',
-          name: "Legacy Bundle",
-          price: "$750",
-          img: legacyBundleImg,
-          perks: ["Bread for a year", "Deluxe pantry box", "Hoodie + t-shirt", "Cookbook", "Signature cookie set", "VIP Founders recognition"]
-        }
-      ]
-    }
-  ];
+const MenuPage = ({ onProductClick }) => {
+  const nowInSeasonProducts = allProducts.filter(p => p.category === "Now In Season");
+  const presaleProducts = allProducts.filter(p => p.category === "Pre-Sale");
 
   return (
-    <section id="now-in-season" className="now-in-season-grid-section">
-      <div className="container">
-        <h2 className="section-title-new">NOW IN SEASON - PHYSICAL MERCH EDITION</h2>
-        {categories.map((cat, idx) => (
-          <div key={idx} className={`menu-category-block ${cat.isBundle ? 'bundles-category' : ''}`}>
-            <h3 className="category-title-main">{cat.title}</h3>
-            <div className="products-grid-new">
-              {cat.items.map((item, i) => (
-                <div key={i} className="product-card-new">
-                  <div className="product-img-frame">
-                    <img src={item.img} alt={item.name} loading="lazy" />
-                  </div>
-                  <div className="product-details-new">
-                    <h4 className="p-name">{item.name}</h4>
-                    <span className="p-price">{item.price}</span>
-                    <ul className="p-perks">
-                      {item.perks.map((perk, pIdx) => (
-                        <li key={pIdx}>• {perk}</li>
-                      ))}
-                    </ul>
-                    <button 
-                      className="order-btn-new"
-                      onClick={() => redirectToCheckout(item.id)}
-                    >
-                      ORDER ONLINE <span>→</span>
-                    </button>
-                  </div>
+    <div className="menu-page-container">
+      <ProductSubHeader />
+      
+      <section className="menu-section now-in-season-section-v2">
+        <div className="container">
+          <div className="product-grid-v2">
+            {nowInSeasonProducts.map((item, i) => (
+              <ProductCardV2 key={i} item={item} onClick={onProductClick} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="menu-section presale-section-v2">
+        <div className="container">
+          <div className="presale-header-v2">
+            <h2 className="presale-title-v2">PRE-SALE</h2>
+            <p className="presale-desc-v2">
+              Every item below is a real product you'll receive after launch. Your support funds equipment, licensing, ingredients, and our first production runs. All items are limited-run Founders Editions — once they're gone, they're gone.
+            </p>
+          </div>
+          <div className="product-grid-v2">
+            {presaleProducts.map((item, i) => (
+              <ProductCardV2 key={i} item={item} onClick={onProductClick} />
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+const ProductDetailPage = ({ productId, onProductClick }) => {
+  const product = useMemo(() => allProducts.find(p => p.id === productId), [productId]);
+  const relatedProducts = useMemo(() => allProducts.filter(p => p.category === product?.category && p.id !== productId).slice(0, 5), [product, productId]);
+
+  if (!product) return <div className="container">Product not found</div>;
+
+  return (
+    <div className="product-detail-page">
+      <ProductSubHeader />
+      
+      <div className="container detail-content-wrapper">
+        <div className="detail-layout">
+          <div className="detail-image-block">
+            <img src={product.img} alt={product.name} className="main-detail-img" />
+          </div>
+          
+          <div className="detail-info-block">
+            <h1 className="detail-name">{product.name}</h1>
+            <div className="detail-price">{product.price}</div>
+            
+            <div className="detail-divider"></div>
+            
+            <button className="add-to-cart-big" onClick={() => redirectToCheckout(product.id)}>
+              ADD TO CART
+            </button>
+            
+            <div className="detail-sections">
+              <div className="detail-section">
+                <h4>DESCRIPTION</h4>
+                <p className="desc-bullets">
+                    {product.description.split('\n').map((line, i) => (
+                        <span key={i}>{line}<br/></span>
+                    ))}
+                </p>
+              </div>
+              
+              <div className="detail-section">
+                <h4>PRODUCT DETAILS</h4>
+                <p>{product.productDetails}</p>
+              </div>
+              
+              {product.ingredients && (
+                <div className="detail-section">
+                  <h4>INGREDIENTS</h4>
+                  <p>{product.ingredients}</p>
                 </div>
-              ))}
+              )}
+              
+              <div className="logistics-row">
+                <div className="log-item">
+                  <strong>PICK UP:</strong> {product.pickup.toUpperCase()}
+                </div>
+                <div className="log-item">
+                  <strong>LOCAL DELIVERY:</strong> {product.delivery.toUpperCase()}
+                </div>
+              </div>
             </div>
           </div>
-        ))}
+        </div>
+        
+        <div className="related-products-section">
+          <h2 className="related-title">YOU MAY ALSO LIKE</h2>
+          <div className="product-grid-v2">
+            {relatedProducts.map((item, i) => (
+              <ProductCardV2 key={i} item={item} onClick={onProductClick} />
+            ))}
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
   );
 };
 
 const Section7 = () => {
-  return (
-    <section className="presale-menu-section">
-      <div className="container">
-        <div className="presale-flex">
-          <div className="presale-image">
-            <img src={menuImg} alt="Bakery Presale Menu Items" loading="lazy" />
+    // Section7 was likely the presale menu on the homepage, 
+    // we can either keep it as is or redirect to menu.
+    // For now, let's keep the existing Section7 logic if it was intended for the homepage.
+    // Wait, I saw a 'presale-menu-section' in the broken code. Let's restore a clean version for Section7.
+    return (
+        <section className="presale-menu-section">
+          <div className="container">
+            <div className="presale-flex">
+              <div className="presale-image">
+                <img src={menuImg} alt="Bakery Presale Menu Items" loading="lazy" />
+              </div>
+              <div className="presale-content">
+                <h2 className="presale-title">24 KARAT BAKERY<br />PRESALE MENU</h2>
+                <p className="presale-intro">
+                  Every item below is a real product you'll receive after launch. Your support funds equipment, licensing, ingredients, and our first production runs. All items are limited-run Founders Editions — once they're gone, they're gone.
+                </p>
+    
+                <div className="menu-list">
+                  <div className="menu-item-detailed">
+                    <div className="item-main-row">
+                      <h4 className="item-title">FOUNDERS PASTRY BOX | $45</h4>
+                      <button onClick={() => redirectToCheckout('1931')} className="order-online-link">
+                        Order Online <span>→</span>
+                      </button>
+                    </div>
+                    <p className="item-sub-desc">
+                      8–10 premium pastries (rotating seasonal selection)<br />
+                      Exclusive flavors only for presale supporters
+                    </p>
+                    <div className="item-divider"></div>
+                  </div>
+    
+                  <div className="menu-item-detailed">
+                    <div className="item-main-row">
+                      <h4 className="item-title">Founders Pastry Box Trio Bundle | $120</h4>
+                      <button onClick={() => redirectToCheckout('1931')} className="order-online-link">
+                        Order Online <span>→</span>
+                      </button>
+                    </div>
+                    <p className="item-sub-desc">
+                      3 pastry boxes (perfect for gifting or events)
+                    </p>
+                    <div className="item-divider"></div>
+                  </div>
+    
+                  <div className="menu-item-detailed">
+                    <div className="item-main-row">
+                      <h4 className="item-title">Signature Cookie Set | $70</h4>
+                      <button onClick={() => redirectToCheckout('1933')} className="order-online-link">
+                        Order Online <span>→</span>
+                      </button>
+                    </div>
+                    <p className="item-sub-desc">
+                      24 cookies (baked or dough)<br />
+                      Limited-edition flavors
+                    </p>
+                    <div className="item-divider"></div>
+                  </div>
+                </div>
+    
+                <div className="view-more-container">
+                  <button className="view-more-options-btn" onClick={() => window.location.href = '/presale/?view=menu'}>
+                    VIEW MORE OPTIONS
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="presale-content">
-            <h2 className="section-title">24 KARAT BAKERY<br />PRESALE MENU</h2>
-            <p className="presale-intro">
-              Every item below is a real product you'll receive after launch. Your support funds equipment, licensing, ingredients, and our first production runs. All items are limited-run Founders Editions — once they're gone, they're gone.
-            </p>
-
-            <div className="menu-category">
-              <h4 className="category-title">SIGNATURE BAKERY COLLECTIONS</h4>
-              <div className="menu-item-row">
-                <h5>FOUNDERS PASTRY BOX | $45</h5>
-                <button
-                  onClick={() => redirectToCheckout('1931')}
-                  className="order-link"
-                >
-                  Order Online <span>→</span>
-                </button>
-              </div>
-              <p className="item-desc">
-                8-10 premium pastries (rotating seasonal selection)<br />
-                Exclusive flavors only for presale supporters<br />
-                Luxury gold-accent packaging
-              </p>
-            </div>
-
-            <div className="menu-category">
-              <h4 className="category-title">COOKIE DOZEN COLLECTION</h4>
-              <div className="menu-item-row">
-                <h5>BAKED COOKIE DOZEN | $36</h5>
-                <button
-                  onClick={() => redirectToCheckout('1933')}
-                  className="order-link"
-                >
-                  Order Online <span>→</span>
-                </button>
-              </div>
-              <p className="item-desc">
-                12 artisan cookies<br />
-                Classic + globally inspired flavors
-              </p>
-            </div>
-
-            <div className="menu-category">
-              <h4 className="category-title">BREAD FOR A YEAR PROGRAM (LIMIT 50)</h4>
-              <div className="menu-item-row">
-                <h5>WEEKLY BREAD SUBSCRIPTION | $300</h5>
-                <button
-                  onClick={() => redirectToCheckout('1930')}
-                  className="order-link"
-                >
-                  Order Online <span>→</span>
-                </button>
-              </div>
-              <p className="item-desc">
-                1 artisan loaf per week for 12 months<br />
-                Priority access to limited breads<br />
-                Founders Bread Card (VIP pickup)
-              </p>
-            </div>
-
-            <button className="view-more-btn" onClick={() => window.location.href = '/presale/?view=menu'}>VIEW MORE OPTIONS</button>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+        </section>
+      );
 };
+
 
 const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState(null);
@@ -1010,23 +1158,47 @@ const FAQSection = () => {
   const faqs = [
     {
       question: "What is 24 Karat Bakery?",
-      answer: "At 24 Karat Bakery, our mission is to establish a collaborative environment that empowers self-driven bakers and like-minded individuals to work alongside co-owners. We are dedicated to fostering both teamwork and individual growth within our community."
+      answer: "24 Karat Bakery Co-op is a community-driven bakery born from the idea that good food, good jobs, and shared ownership should grow together. We are a co-op where the people who bake the bread, serve the customers, and run the ovens all share in the success they help create."
     },
     {
       question: "How does a co-op work?",
-      answer: "A co-op is owned and operated by its workers and community members, who make decisions democratically and share in any profits. Unlike traditional businesses, co-ops prioritize fair wages, ethical practices, and community benefit over maximizing profits. This model allows customers to support a business that aligns with their values and actively contributes to the community."
+      answer: "A co-op is owned and operated by its workers and community members, who make decisions democratically and share in any profits. Unlike traditional businesses, co-ops prioritize fair wages, ethical practices, and community benefit over maximizing profits. Everyone has a voice, everyone has a vote, and everyone has a path forward."
     },
     {
       question: "What type of cuisine will 24 Karat Bakery offer?",
-      answer: "We believe the cuisine should authentically represent our community, bringing together ingredients from around the world. By highlighting seasonal flavors from diverse countries and regions, we aim to create a vibrant culinary experience."
+      answer: "We believe the cuisine should authentically represent our community, bringing together clean, healthy, globally inspired ingredients. By highlighting seasonal flavors from diverse countries and regions, we aim to create a vibrant culinary experience that nourishes both people and community."
     },
     {
       question: "Where will the bakery be located?",
-      answer: "Our location will be in Chicago, with plans to establish ourselves near the Lincoln Park area. While the exact address is yet to be determined, this vibrant neighborhood aligns with our vision."
+      answer: "Our location will be in Chicago, near the Lincoln Park area. While the exact address is yet to be determined, we are building a permanent, community-owned marketplace where local food and neighbors can shine year-round."
     },
     {
       question: "This sounds awesome! How can I get involved?",
-      answer: "If our vision resonates with you, we invite you to join us by signing up under the \"Become an Owner\" tab. Our goal is to gather at least 100 enthusiastic members. If you have unique skills to contribute or are interested in a position on our board, we’d love to hear from you! We’re specifically looking for bakers, baristas, and dedicated customers to help bring this project to life."
+      answer: "You can join us by signing up as a Community Owner! We’re looking for bakers, baristas, and dedicated customers to help bring this project to life. Check our 'Become an Owner' section or sign up for our newsletter to stay updated on our progress and the launch of our Chicago space."
+    },
+    {
+      question: "What is community ownership at 24 Karat Bakery?",
+      answer: "Community ownership means the bakery is owned by the people who use it and work in it. It’s not about control; it’s about empowerment. It ensures the business stays rooted in the community’s needs rather than just seeking outside profit."
+    },
+    {
+      question: "What Does It Mean to Be a Community Owner?",
+      answer: "As a community owner, you have a real say in the future of your neighborhood bakery. You help shape the mission, vote on key decisions, and share in the success of the co-op. It’s a way to invest in a business that aligns with your values."
+    },
+    {
+      question: "How to Become a Community Owner",
+      answer: "You can become a founder by choosing an ownership tier that fits your contribution level. Each tier comes with specific perks and a share in the co-op. See our membership section for details on how to join and help us reach our goal of 100 enthusiastic members."
+    },
+    {
+      question: "How do you help food entrepreneurs?",
+      answer: "We provide a year-round marketplace where small food makers can sell their goods without the high overhead of their own storefront. This helps turn passions into sustainable businesses while keeping more money in the entrepreneurs' pockets."
+    },
+    {
+      question: "How do you help workers?",
+      answer: "At 24 Karat, work isn't just a paycheck—it's a path to growth. We offer fair pay above market rates, hands-on training in baking and business skills, and a real voice in decision-making as a co-owner."
+    },
+    {
+      question: "What is your promise?",
+      answer: "We promise to bake with purpose: feeding people well with clean ingredients, supporting our worker-owners through skill-building, and reinvesting locally in community projects and food education."
     }
   ];
 
@@ -1070,43 +1242,41 @@ const Footer = () => {
       <div className="footer-banner" style={{ backgroundImage: `url(${breadBg})` }}>
         <h2 className="banner-text">BREAK BREAD, MAKE PEACE!</h2>
       </div>
-      <div className="container">
-        <div className="footer-grid">
-          <div className="footer-column left">
-            <h4 className="column-title">SIGNATURE BAKERY COLLECTIONS</h4>
-            <div className="footer-nav">
-              <a href="#hero">HOME</a>
-              <a href="#about">ABOUT</a>
-              <a href="#ownership">OWNERSHIP</a>
-              <a href="#community">COMMUNITY</a>
-              <a href="#products">PRODUCTS</a>
-              <a href="#">GIFTCARD</a>
-              <a href="#contact">CONTACT</a>
-            </div>
-            <div className="footer-contact-info">
-              <p className="copyright">© 24 Karat Bakery 2026</p>
-              <p className="address">2121 Ulster Avenue Lake Katrine, NY 12449</p>
-              <div className="operating-hours">
-                <p>Boiceville & Woodstock Hours: Fri–Mon 7–5pm | Tue–Thu 7–3pm</p>
-                <p>Rhinebeck Hours: Sun–Mon 7–5pm</p>
-              </div>
+      <div className="footer-grid">
+        <div className="footer-column left">
+          <h4 className="column-title">SIGNATURE BAKERY COLLECTIONS</h4>
+          <div className="footer-nav">
+            <a href="#hero">HOME</a>
+            <a href="#about">ABOUT</a>
+            <a href="#ownership">OWNERSHIP</a>
+            <a href="#community">COMMUNITY</a>
+            <a href="/presale/?view=menu">PRODUCTS</a>
+            <a href="#contact">CONTACT</a>
+          </div>
+          <div className="footer-contact-info">
+            <p className="copyright">© 24 Karat Bakery 2026</p>
+            <p className="address">820 N Orleans St. Chicago, IL 60610</p>
+            <div className="operating-details">
+              <p>Pre-orders & subscriptions: Open Weekly</p>
+              <p>Farmers markets: Follow us on Instagram to Stay Updated</p>
+              <p>Pickup: By Scheduled Time</p>
             </div>
           </div>
-          <div className="footer-column right">
-            <h4 className="column-title">FOLLOW US</h4>
-            <div className="newsletter-section">
-              <h5>JOIN OUR NEWSLETTER</h5>
-              <p>Subscribe to our newsletter to get the latest news on 24 Karat Bakery.</p>
-              <div className="subscribe-form">
-                <input type="email" placeholder="Email Address" />
-                <button className="subscribe-btn">
-                  Subscribe <span>→</span>
-                </button>
-              </div>
+        </div>
+        <div className="footer-column right">
+          <h4 className="column-title">FOLLOW US</h4>
+          <div className="newsletter-section">
+            <h5 className="newsletter-title">JOIN OUR NEWSLETTER</h5>
+            <p className="newsletter-desc">Subscribe to our newsletter to get the latest news on 24 Karat Bakery.</p>
+            <div className="subscribe-form">
+              <input type="email" placeholder="Email Address" />
+              <button className="subscribe-btn" onClick={() => window.open('https://mailchimp.com', '_blank')}>
+                Subscribe <span>→</span>
+              </button>
             </div>
-            <div className="footer-brand">
-              <img src={logo} alt="24 Karat Bakery Logo" className="footer-logo-img" />
-            </div>
+          </div>
+          <div className="footer-brand">
+            <img src={logo} alt="24 Karat Bakery Logo" className="footer-logo-img" />
           </div>
         </div>
       </div>
@@ -1117,13 +1287,18 @@ const Footer = () => {
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [view, setView] = useState('home');
+  const [selectedProductId, setSelectedProductId] = useState(null);
 
   useEffect(() => {
     const handleView = () => {
       const params = new URLSearchParams(window.location.search);
       const hash = window.location.hash;
-      // If ?view=menu is present OR we are targeting the season section, show menu view
-      if (params.get('view') === 'menu' || hash === '#now-in-season') {
+      const product = params.get('product');
+
+      if (product) {
+        setSelectedProductId(product);
+        setView('product');
+      } else if (params.get('view') === 'menu' || hash === '#now-in-season') {
         setView('menu');
       } else {
         setView('home');
@@ -1131,6 +1306,7 @@ function App() {
     };
 
     handleView(); // Initial check
+    window.addEventListener('popstate', handleView);
     window.addEventListener('hashchange', handleView);
 
     const handleScroll = () => {
@@ -1139,17 +1315,37 @@ function App() {
     window.addEventListener('scroll', handleScroll);
     
     return () => {
+      window.removeEventListener('popstate', handleView);
       window.removeEventListener('hashchange', handleView);
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
+  const handleProductClick = (id) => {
+    const url = new URL(window.location);
+    url.searchParams.set('product', id);
+    window.history.pushState({}, '', url);
+    setSelectedProductId(id);
+    setView('product');
+    window.scrollTo(0, 0);
+  };
+
+  if (view === 'product') {
+    return (
+      <div className="app product-view">
+        <Navbar isScrolled={isScrolled} />
+        <ProductDetailPage productId={selectedProductId} onProductClick={handleProductClick} />
+        <FAQSection />
+        <Footer />
+      </div>
+    );
+  }
+
   if (view === 'menu') {
-    console.log("V2 - Menu View Loaded");
     return (
       <div className="app menu-view">
         <Navbar isScrolled={isScrolled} />
-        <NowInSeasonSection />
+        <MenuPage onProductClick={handleProductClick} />
         <FAQSection />
         <Footer />
       </div>
