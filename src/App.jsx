@@ -96,21 +96,21 @@ function Navbar({ isScrolled }) {
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="nav-container">
         <div className="nav-links left">
-          <a href="/presale/">HOME</a>
+          <a href="./">HOME</a>
           <a href="#about">ABOUT</a>
           <a href="#ownership">OWNERSHIP</a>
           <a href="#community">COMMUNITY</a>
-          <a href="/presale/?view=menu">STORE</a>
+          <a href="?view=menu">STORE</a>
           <a href="#contact">CONTACT</a>
         </div>
 
-        <a href="/presale/" className="nav-logo">
+        <a href="./" className="nav-logo">
           <img src={logo} alt="24 Karat Bakery" />
         </a>
 
         <div className="nav-links right">
           <a href="#" className="nav-btn giftcard" onClick={() => redirectToCheckout('1934')}>GIFTCARD</a>
-          <a href="/presale/?view=menu" className="nav-btn pre-order">PRE ORDER NOW</a>
+          <a href="?view=menu" className="nav-btn pre-order">PRE ORDER NOW</a>
         </div>
 
         <button className="menu-toggle" aria-label="Toggle menu" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -121,13 +121,13 @@ function Navbar({ isScrolled }) {
       {/* Mobile Menu */}
       <div className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}>
         <div className="mobile-links">
-          <a href="/presale/" onClick={() => setIsMenuOpen(false)}>HOME</a>
-          <a href="/presale/?view=menu" onClick={() => setIsMenuOpen(false)}>PRODUCTS</a>
+          <a href="./" onClick={() => setIsMenuOpen(false)}>HOME</a>
+          <a href="?view=menu" onClick={() => setIsMenuOpen(false)}>PRODUCTS</a>
           <a href="#about" onClick={() => setIsMenuOpen(false)}>ABOUT</a>
           <a href="#ownership" onClick={() => setIsMenuOpen(false)}>OWNERSHIP</a>
           <a href="#community" onClick={() => setIsMenuOpen(false)}>COMMUNITY</a>
           <a href="#contact" onClick={() => setIsMenuOpen(false)}>CONTACT</a>
-          <a href="/presale/?view=menu" className="mobile-cta" onClick={() => setIsMenuOpen(false)}>PRE ORDER NOW</a>
+          <a href="?view=menu" className="mobile-cta" onClick={() => setIsMenuOpen(false)}>PRE ORDER NOW</a>
         </div>
       </div>
     </nav>
@@ -1140,7 +1140,7 @@ const Section7 = () => {
                 </div>
     
                 <div className="view-more-container">
-                  <button className="view-more-options-btn" onClick={() => window.location.href = '/presale/?view=menu'}>
+                  <button className="view-more-options-btn" onClick={() => window.location.search = '?view=menu'}>
                     VIEW MORE OPTIONS
                   </button>
                 </div>
@@ -1250,7 +1250,7 @@ const Footer = () => {
             <a href="#about">ABOUT</a>
             <a href="#ownership">OWNERSHIP</a>
             <a href="#community">COMMUNITY</a>
-            <a href="/presale/?view=menu">PRODUCTS</a>
+            <a href="?view=menu">PRODUCTS</a>
             <a href="#contact">CONTACT</a>
           </div>
           <div className="footer-contact-info">

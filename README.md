@@ -1,16 +1,34 @@
-# React + Vite
+# 24 Karat Bakery - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A premium, interactive React-based frontend for a community-powered bakery in Chicago.
 
-Currently, two official plugins are available:
+## 🥯 Project Purpose
+This application serves as a modern, interactive landing page and storefront that integrates seamlessly with a WordPress/WooCommerce backend for e-commerce operations.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠️ Tech Stack
+- **Frontend**: React 19 + Vite
+- **Styling**: Vanilla CSS (Custom animations & premium design)
+- **E-commerce**: WooCommerce (WP) for checkout and payments
 
-## React Compiler
+## 🏗️ Core Architecture
+- **State-Driven Views**: Swaps between 'Home' and 'Menu' views via URL parameters and internal state.
+- **Headless Checkout**: Redirects users directly to WooCommerce checkout with items selected in the React UI.
+- **Interactive Ownership**: A custom widget for selecting membership tiers and shares.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Quick Start
+```bash
+# Install dependencies
+npm install
 
-## Expanding the ESLint configuration
+# Run development server
+npm run dev
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# Build for production
+npm run build
+```
+
+## 📂 Key Files
+- `src/App.jsx`: Main logic, view management, and core UI components.
+- `src/App.css`: Centralized styles and animations.
+- `PROJECT_OVERVIEW.md`: Detailed technical architecture.
+- `PROJECT_CONTEXT.md`: High-level strategic goals and roadmap.
