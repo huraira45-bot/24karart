@@ -1023,7 +1023,9 @@ const ProductDetailPage = ({ productId, onProductClick }) => {
           
           <div className="detail-info-block">
             <h1 className="detail-name">{product.name}</h1>
-            <div className="detail-price">{product.price}</div>
+            <div className="detail-price">
+              {product.price.includes('$') && !product.price.includes('.') ? `${product.price}.00` : product.price}
+            </div>
             
             <div className="detail-divider"></div>
             
