@@ -37,10 +37,17 @@ body {
   transition: all 0.4s ease;
 }
 
-.navbar.scrolled {
+.navbar.scrolled,
+.menu-view .navbar,
+.product-view .navbar {
   background: white;
   padding: 0.8rem 0;
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+}
+
+.menu-view .navbar .nav-logo img,
+.product-view .navbar .nav-logo img {
+  height: 50px;
 }
 
 .nav-container {
@@ -82,7 +89,9 @@ body {
   color: white;
 }
 
-.home-view .navbar.scrolled .nav-links a {
+.home-view .navbar.scrolled .nav-links a,
+.menu-view .navbar .nav-links a,
+.product-view .navbar .nav-links a {
   color: #242725;
 }
 
@@ -2251,8 +2260,8 @@ body {
   width: 100%;
   border-bottom: 2px solid #242725;
   padding: 15px 0;
-  background: white;
-  z-index: 100;
+  background: white; /* Ensure solid background */
+  z-index: 900; /* Stays above content, below main Navbar (1000) */
 }
 
 .sub-header-container {
@@ -3590,4 +3599,10 @@ body {
   .bread-card {
     aspect-ratio: 3 / 4;
   }
-}$css
+}
+
+@media (max-width: 768px) {
+  .product-sub-header {
+    top: 60px; /* Adjust for mobile navbar height */
+  }
+}
