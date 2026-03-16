@@ -1,0 +1,278 @@
+
+/* --- Mission Section Styles --- */
+.mission-section {
+  padding: 120px 0;
+  background-color: #fdfbf7;
+  color: #372720;
+  border-top: 1px solid rgba(55, 39, 32, 0.1);
+}
+
+.mission-main-title {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  letter-spacing: 0.05em;
+  text-align: center;
+  margin-bottom: 80px;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.mission-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 80px;
+  margin-bottom: 100px;
+  align-items: start;
+}
+
+.mission-sub-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  letter-spacing: -0.01em;
+  position: relative;
+  display: inline-block;
+}
+
+.mission-sub-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background-color: #372720;
+}
+
+.mission-sub-title.centered {
+  display: block;
+  text-align: center;
+}
+
+.mission-sub-title.centered::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.mission-lead {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  margin-bottom: 25px;
+  color: #242725;
+}
+
+.mission-p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.philosophy-intro {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.15rem;
+  font-style: italic;
+  margin-bottom: 30px;
+}
+
+.philosophy-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 40px;
+}
+
+.philosophy-list li {
+  margin-bottom: 18px;
+  padding-left: 30px;
+  position: relative;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.philosophy-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #372720;
+  font-weight: bold;
+}
+
+.empowerment-box {
+  background: #f1ede1;
+  padding: 30px;
+  border-left: 4px solid #372720;
+}
+
+.empowerment-box p {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+.empowerment-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.empowerment-tags span {
+  background: #372720;
+  color: white;
+  padding: 6px 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+}
+
+.promise-section {
+  background: #372720;
+  color: #f6f4e3;
+  padding: 80px 40px;
+  border-radius: 4px;
+  margin-bottom: 100px;
+  text-align: center;
+}
+
+.promise-section .mission-sub-title {
+  color: #f6f4e3;
+}
+
+.promise-section .mission-sub-title::after {
+  background-color: #f6f4e3;
+}
+
+.promise-tagline {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.25rem;
+  margin: 30px 0 50px;
+  font-weight: 300;
+}
+
+.promise-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-bottom: 50px;
+}
+
+.promise-card {
+  padding: 0 20px;
+}
+
+.promise-icon {
+  width: 40px;
+  height: 40px;
+  background: #f6f4e3;
+  color: #372720;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+}
+
+.promise-card h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  letter-spacing: 0.02em;
+}
+
+.promise-card p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.promise-footer {
+  font-family: 'Open Sans', sans-serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  max-width: 800px;
+  margin: 0 auto;
+  opacity: 0.8;
+}
+
+.audience-grid-v2 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.audience-card {
+  background: white;
+  padding: 40px;
+  border: 1px solid rgba(55, 39, 32, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.audience-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.audience-card h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: #372720;
+}
+
+.audience-card p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #666;
+  margin-bottom: 25px;
+}
+
+.audience-perks {
+  list-style: none;
+  padding: 0;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+
+.audience-perks li {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+  color: #372720;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.audience-perks li::before {
+  content: '✓';
+  color: #2D5A43;
+}
+
+@media (max-width: 1024px) {
+  .mission-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+  .promise-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .audience-grid-v2 {
+    grid-template-columns: 1fr;
+  }
+}

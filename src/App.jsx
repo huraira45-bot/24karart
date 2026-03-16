@@ -330,15 +330,18 @@ const allProducts = [
   }
 ];
 
-function ProductSubHeader({ cartCount, onCartClick }) {
+function ProductSubHeader({ cartCount, onCartClick, minimal = false }) {
   return (
-    <div id="now-in-season" className="product-sub-header">
+    <div id="now-in-season" className={`product-sub-header ${minimal ? 'minimal' : ''}`}>
       <div className="container sub-header-container">
-        <h2 className="now-in-season-title">NOW IN SEASON</h2>
-        <div className="search-bar-v2">
-          <input type="text" placeholder="Search Grocery Pickup & Delivery" />
-          <svg className="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-        </div>
+        {!minimal && <h2 className="now-in-season-title">NOW IN SEASON</h2>}
+        {!minimal && (
+          <div className="search-bar-v2">
+            <input type="text" placeholder="Search Grocery Pickup & Delivery" />
+            <svg className="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          </div>
+        )}
+        {minimal && <div style={{ flex: 1 }}></div>}
         <div className="cart-link-v2" onClick={onCartClick} style={{ cursor: 'pointer' }}>
           <div className="cart-icon-wrapper">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
@@ -1084,14 +1087,31 @@ const ProductDetailPage = ({ productId, onProductClick, onAddToCart, cartCount, 
 };
 
 const CartPage = ({ cart, onUpdateQuantity, onRemove, onCheckout, onCartClick, cartCount }) => {
-  const subtotal = useMemo(() => cart.reduce((sum, item) => sum + (parseFloat(item.price.replace('$', '')) * item.quantity), 0), [cart]);
+  const subtotal = useMemo(() => {
+    return cart.reduce((sum, item) => {
+      const priceStr = item.price ? String(item.price) : '0';
+      const cleanPrice = priceStr.replace(/[^0-9.]/g, '');
+      const priceVal = parseFloat(cleanPrice) || 0;
+      return sum + (priceVal * item.quantity);
+    }, 0);
+  }, [cart]);
 
   return (
-    <div className="cart-page-container">
-      <ProductSubHeader cartCount={cartCount} onCartClick={onCartClick} />
+    <div className="cart-page-container" style={{ paddingTop: '180px' }}>
+      <ProductSubHeader cartCount={cartCount} onCartClick={onCartClick} minimal={true} />
       
       <div className="container cart-content-wrapper">
-        <h1 className="cart-title">YOUR CART</h1>
+        <div className="cart-header-top">
+          <a href="?view=menu" className="back-to-store-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            RETURN TO STORE
+          </a>
+          <h1 className="cart-title-refined">YOUR CART</h1>
+          <div className="header-spacer"></div>
+        </div>
         
         {cart.length === 0 ? (
           <div className="empty-cart-state">
@@ -1128,7 +1148,7 @@ const CartPage = ({ cart, onUpdateQuantity, onRemove, onCheckout, onCartClick, c
                     </div>
                   </div>
                   <div className="cart-item-total">
-                    ${(parseFloat(item.price.replace('$', '')) * item.quantity).toFixed(2)}
+                    ${((parseFloat(String(item.price).replace(/[^0-9.]/g, '')) || 0) * item.quantity).toFixed(2)}
                   </div>
                 </div>
               ))}
@@ -1234,53 +1254,74 @@ const Section7 = () => {
 };
 
 
+
 const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState(null);
 
   const faqs = [
     {
       question: "What is 24 Karat Bakery?",
-      answer: "24 Karat Bakery Co-op is a community-driven bakery born from the idea that good food, good jobs, and shared ownership should grow together. We are a co-op where the people who bake the bread, serve the customers, and run the ovens all share in the success they help create."
+      answer: "24 Karat Bakery is a community-owned cooperative bakery focused on great food, fair jobs, and shared ownership. Workers, customers, and community members can all take part in its success."
     },
     {
       question: "How does a co-op work?",
-      answer: "A co-op is owned and operated by its workers and community members, who make decisions democratically and share in any profits. Unlike traditional businesses, co-ops prioritize fair wages, ethical practices, and community benefit over maximizing profits. Everyone has a voice, everyone has a vote, and everyone has a path forward."
+      answer: "A co-op is a business owned by its members. Members can buy shares, have a voice in decisions, and help guide the future of the bakery."
     },
     {
       question: "What type of cuisine will 24 Karat Bakery offer?",
-      answer: "We believe the cuisine should authentically represent our community, bringing together clean, healthy, globally inspired ingredients. By highlighting seasonal flavors from diverse countries and regions, we aim to create a vibrant culinary experience that nourishes both people and community."
+      answer: "24 Karat Bakery offers fresh breads, bagels, pastries, desserts, and drinks made with wholesome, organic, and locally sourced ingredients."
     },
     {
       question: "Where will the bakery be located?",
-      answer: "Our location will be in Chicago, near the Lincoln Park area. While the exact address is yet to be determined, we are building a permanent, community-owned marketplace where local food and neighbors can shine year-round."
+      answer: "24 Karat Bakery was founded in Chicago, with plans to grow the cooperative model into more communities."
     },
     {
       question: "This sounds awesome! How can I get involved?",
-      answer: "You can join us by signing up as a Community Owner! We’re looking for bakers, baristas, and dedicated customers to help bring this project to life. Check our 'Become an Owner' section or sign up for our newsletter to stay updated on our progress and the launch of our Chicago space."
+      answer: "You can get involved by becoming a community owner, working with us, selling your products through the co-op, or supporting us as a customer."
     },
     {
       question: "What is community ownership at 24 Karat Bakery?",
-      answer: "Community ownership means the bakery is owned by the people who use it and work in it. It’s not about control; it’s about empowerment. It ensures the business stays rooted in the community’s needs rather than just seeking outside profit."
+      answer: "Community ownership allows local supporters to buy shares and become part-owners of the bakery."
     },
     {
-      question: "What Does It Mean to Be a Community Owner?",
-      answer: "As a community owner, you have a real say in the future of your neighborhood bakery. You help shape the mission, vote on key decisions, and share in the success of the co-op. It’s a way to invest in a business that aligns with your values."
+      question: "What does it mean to be a Community Owner?",
+      answer: "Community Owners help support the bakery’s mission and may participate in important decisions about its future."
     },
     {
-      question: "How to Become a Community Owner",
-      answer: "You can become a founder by choosing an ownership tier that fits your contribution level. Each tier comes with specific perks and a share in the co-op. See our membership section for details on how to join and help us reach our goal of 100 enthusiastic members."
+      question: "What community ownership is not",
+      answer: "Community ownership does not involve managing daily operations. The bakery is run by professional staff."
     },
     {
-      question: "How do you help food entrepreneurs?",
-      answer: "We provide a year-round marketplace where small food makers can sell their goods without the high overhead of their own storefront. This helps turn passions into sustainable businesses while keeping more money in the entrepreneurs' pockets."
+      question: "Community ownership contribution",
+      answer: "Community ownership contributions help launch, grow, and support the bakery and its community programs."
     },
     {
-      question: "How do you help workers?",
-      answer: "At 24 Karat, work isn't just a paycheck—it's a path to growth. We offer fair pay above market rates, hands-on training in baking and business skills, and a real voice in decision-making as a co-owner."
+      question: "How to become a Community Owner",
+      answer: "Simply purchase ownership shares and join the co-op community."
+    },
+    {
+      question: "What does it mean to be a customer at 24 Karat Bakery?",
+      answer: "Customers enjoy great baked goods while supporting local workers, entrepreneurs, and community projects."
+    },
+    {
+      question: "What is your story?",
+      answer: "24 Karat Bakery started with a simple idea: great food and shared ownership can strengthen communities."
+    },
+    {
+      question: "What is your philosophy?",
+      answer: "We believe food should nourish people and communities, using real ingredients and fair opportunities for workers."
     },
     {
       question: "What is your promise?",
-      answer: "We promise to bake with purpose: feeding people well with clean ingredients, supporting our worker-owners through skill-building, and reinvesting locally in community projects and food education."
+      answer: "We promise to serve high-quality food, support our workers, and reinvest in the community."
+    },
+    {
+      question: "How do you help food entrepreneurs?",
+      answer: "We provide a year-round marketplace where food makers can sell their products without the cost of running their own store."
+    },
+    {
+      question: "How do you help workers?",
+      answer: "Workers receive fair pay, training, and the opportunity to become co-owners of the bakery."
     }
   ];
 
@@ -1408,6 +1449,7 @@ function App() {
   const [cart, setCart] = useState([]);
 
   const addToCart = (product) => {
+    if (!product) return;
     setCart(prev => {
       const existing = prev.find(item => item.id === product.id);
       if (existing) {
@@ -1415,11 +1457,7 @@ function App() {
       }
       return [...prev, { ...product, quantity: 1 }];
     });
-    setView('cart');
-    const url = new URL(window.location);
-    url.searchParams.delete('product');
-    url.searchParams.set('view', 'cart');
-    window.history.pushState({}, '', url);
+    // Removed auto-redirect to cart
   };
 
   const updateQuantity = (id, newQty) => {
@@ -1470,6 +1508,7 @@ function App() {
           cartCount={cart.length}
           onCartClick={handleCartClick}
         />
+        <Section3 />
         <FAQSection />
         <Footer />
       </div>
@@ -1504,6 +1543,9 @@ function App() {
           onCartClick={handleCartClick} 
           onAddToCart={addToCart}
         />
+        <Section1 />
+        <Section2 />
+        <Section3 />
         <FAQSection />
         <Footer />
       </div>
