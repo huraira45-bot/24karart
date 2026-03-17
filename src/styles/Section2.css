@@ -1,0 +1,442 @@
+/* Section 2: Founding Member */
+.founding-member,
+.founding-member .section-title,
+.founding-member .section-description,
+.founding-member .tier-card h3,
+.founding-member .tier-card h3 span,
+.founding-member .tier-card li,
+.founding-member .tier-price {
+  color: #f6f4e3 !important;
+}
+
+.founding-member {
+  background-color: #2D1B14;
+  padding: 80px 0;
+}
+
+.founding-member .container {
+  max-width: none !important;
+  width: 100% !important;
+  padding: 0 40px;
+}
+
+.founding-member .section-title {
+  text-align: center;
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(1.8rem, 8vw, 3rem);
+  /* Reduced from 3.5rem */
+  margin-bottom: 20px;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.founding-member .section-description {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 30px;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+  /* Reduced from 1.1rem */
+  line-height: 1.6;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.tiers-grid {
+  display: flex;
+  /* Changed to flex for easier layout control */
+  gap: 20px;
+  align-items: flex-start;
+  /* Stop cards from stretching to widget height */
+  width: 100%;
+  margin: 0;
+}
+
+.tiers-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  flex: 3;
+  align-items: stretch;
+  /* Cards will now match each other's height */
+}
+
+/* Ensure the widget stays the correct width */
+.membership-widget {
+  flex: 1;
+  min-height: 600px;
+  /* Match tier card height for stability */
+}
+
+.tier-card {
+  border: 1px solid rgba(246, 244, 227, 0.4);
+  padding: 0 25px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  min-height: auto;
+  /* Removed minimum height */
+  flex: 1;
+}
+
+.tier-header {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  padding-top: 0;
+  /* Removed top padding */
+}
+
+.tier-card h3 {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(1.2rem, 5vw, 1.8rem);
+  margin-top: 5px;
+  /* Minimal top margin */
+  margin-bottom: 0px;
+  line-height: 1;
+  width: 100%;
+  text-transform: uppercase;
+}
+
+.share-count {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  display: block;
+  margin-bottom: 5px;
+  /* Reduced from 20px */
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.perks-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  margin: 0;
+  /* Total reset */
+  text-transform: capitalize;
+  color: #f6f4e3;
+  width: 100%;
+  text-align: center;
+}
+
+.tier-description {
+  font-size: 0.75rem;
+  margin: 0 0 10px 0;
+  /* Tighter margin */
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  line-height: 1.4;
+  max-width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tier-intro {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.perks-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.tier-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  margin-top: 5px;
+  /* Reduced from 10px */
+}
+
+.tier-card li {
+  font-size: 0.8rem;
+  /* Reduced from 0.85rem */
+  margin-bottom: 8px;
+  /* Reduced from 15px */
+  line-height: 1.4;
+  font-family: 'Montserrat', sans-serif;
+  color: #f6f4e3;
+}
+
+.tier-price {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(3rem, 15vw, 6rem);
+  margin-top: auto;
+  /* Push price to the very bottom to align ends */
+  padding-top: 15px;
+  padding-bottom: 0;
+  text-align: center;
+  line-height: 0.8;
+  width: 100%;
+  color: white;
+}
+
+/* Membership Widget */
+.membership-widget {
+  background-color: #F9F5F2;
+  color: #2D1B14;
+  border-radius: 30px;
+  padding: 35px 25px;
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(45, 27, 20, 0.1);
+  overflow: hidden;
+  height: 100%;
+}
+
+.widget-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.widget-header span {
+  font-family: 'Anton', sans-serif;
+  font-weight: 400;
+  font-size: 2.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 0.9;
+  margin-bottom: 5px;
+}
+
+.share-inputs {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+}
+
+.share-inputs input {
+  width: 45px;
+  height: 40px;
+  /* Smaller to fit grid */
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #2D1B14;
+}
+
+.share-inputs input.active {
+  background: #E8E5E1;
+  border: 2px solid #2D1B14;
+}
+
+.share-inputs .unit {
+  font-size: 0.8rem;
+  margin-left: 8px;
+  font-weight: 700;
+  color: #888;
+  text-transform: lowercase;
+}
+
+.widget-body p {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  margin-bottom: 25px;
+  font-size: 1.1rem;
+}
+
+.tier-badge-widget {
+  background: #E8E5E1;
+  padding: 4px 12px;
+  border-radius: 4px;
+  display: inline-block;
+  font-size: 0.7rem !important;
+  font-weight: 700 !important;
+  color: #2D1B14;
+  margin-bottom: 15px !important;
+  text-transform: uppercase;
+}
+
+.widget-perks {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 25px 0;
+}
+
+.widget-perks li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.widget-perks li .check-icon {
+  color: #1e6b3e;
+  /* Green check */
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.widget-body label {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.widget-body input[type="checkbox"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid #2D1B14;
+  border-radius: 4px;
+  /* Square with slight rounding */
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.widget-body input[type="checkbox"]:checked {
+  background-color: #2D1B14;
+}
+
+.widget-body input[type="checkbox"]:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  color: white;
+}
+
+.widget-footer {
+  border-top: 2px solid #eee;
+  padding-top: 15px;
+  margin-top: 15px;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Anton', sans-serif;
+  font-weight: 400;
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  letter-spacing: 0.05em;
+}
+
+.checkout-btn {
+  width: 100%;
+  background-color: #3F2320;
+  color: #f6f4e3;
+  border: none;
+  padding: 15px;
+  border-radius: 8px;
+  font-family: 'Anton', sans-serif;
+  font-weight: 400;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: opacity 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.checkout-btn:hover {
+  opacity: 0.9;
+}
+
+.community-note {
+  font-size: 0.85rem;
+  text-align: center;
+  line-height: 1.6;
+  color: #666;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+/* Responsiveness for Section 2 */
+@media (max-width: 1250px) {
+  .tiers-grid {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tiers-wrapper {
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+  }
+
+  .membership-widget {
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 900px) {
+  .tiers-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .founding-member {
+    padding: 60px 0;
+  }
+
+  .founding-member .section-title {
+    margin-bottom: 25px;
+  }
+
+  .tiers-grid {
+    flex-direction: column;
+    padding: 0 15px;
+    gap: 20px;
+  }
+
+  .tiers-wrapper {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .tier-card {
+    padding: 25px 20px;
+    min-height: auto;
+  }
+
+  .membership-widget {
+    padding: 30px 20px;
+    margin-top: 0;
+  }
+
+  .widget-header span {
+    font-size: 2.2rem;
+  }
+
+  .total-row {
+    font-size: 1.6rem;
+  }
+}

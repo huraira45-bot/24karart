@@ -1,0 +1,26 @@
+html,
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow-x: hidden;
+  /* Prevent horizontal scroll */
+}
+
+#root,
+.app {
+  width: 100%;
+}
+
+.home-container {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 40px;
+}

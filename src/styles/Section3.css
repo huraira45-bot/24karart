@@ -1,0 +1,200 @@
+/* Section 3: Waitlist Form */
+.waitlist-section {
+  background-color: #F6F4E3;
+  /* Keeping cream bg as requested previously */
+  padding: 120px 0;
+  color: #242725 !important;
+}
+
+.waitlist-section h2 {
+  color: #242725 !important;
+  font-family: 'Anton', sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.waitlist-section p,
+.waitlist-section label,
+.waitlist-section input {
+  color: #242725 !important;
+}
+
+.waitlist-section .container {
+  max-width: none !important;
+  width: 100% !important;
+  padding: 0 40px;
+}
+
+.waitlist-flex {
+  display: flex;
+  align-items: center;
+  /* Vertically center heading and form */
+  justify-content: space-between;
+  gap: 60px;
+  width: 100%;
+  margin: 0;
+}
+
+.waitlist-content {
+  flex: 1;
+  max-width: 700px;
+  /* More room for text */
+}
+
+.waitlist-content .section-title {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2.5rem, 10vw, 5rem);
+  /* Increased size */
+  line-height: 0.95;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+
+.waitlist-content .section-description {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.1rem, 4vw, 1.25rem);
+  /* Increased size */
+  line-height: 1.5;
+  max-width: 520px;
+}
+
+.waitlist-card {
+  flex: 1;
+  background-color: transparent;
+  border: 2px solid #242725;
+  border-radius: 20px;
+  padding: 60px;
+  /* More internal room */
+  max-width: 750px;
+  /* Larger form card */
+}
+
+/* Large screen constraint to pull form in */
+@media (min-width: 1600px) {
+  .waitlist-section .container {
+    padding-right: 15%;
+    /* Add room from the right */
+    padding-left: 5%;
+  }
+}
+
+.waitlist-card-title {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.1rem;
+  margin-bottom: 35px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.select-label {
+  font-weight: 800;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid #242725;
+  cursor: pointer;
+  position: relative;
+}
+
+.checkbox-label input[type="checkbox"]:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  color: #242725;
+}
+
+.input-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.input-row .input-field {
+  flex: 1;
+  /* Ensure both inputs grow to fill the row */
+  margin-bottom: 0;
+  /* Reset margin inside row */
+}
+
+.input-field {
+  margin-bottom: 15px;
+}
+
+.input-field.full-width {
+  width: 100%;
+}
+
+.input-field label {
+  display: block;
+  font-weight: 800;
+  font-size: 0.75rem;
+  /* Smaller labels */
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  color: #242725;
+}
+
+.input-field input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #242725;
+  background-color: transparent;
+  font-size: 0.95rem;
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 4px;
+  color: #242725;
+}
+
+.submit-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.submit-btn-pill {
+  background-color: #242725;
+  color: #F6F4E3;
+  border: none;
+  padding: 12px 60px;
+  border-radius: 50px;
+  font-family: 'Anton', sans-serif;
+  font-weight: 400;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.submit-btn-pill:hover {
+  background-color: #1a100c;
+  transform: scale(1.02);
+}
+
+.submit-btn:hover,
+.discover-btn:hover,
+.send-btn:hover,
+.view-menu-btn:hover {
+  opacity: 0.9;
+}

@@ -1,0 +1,167 @@
+/* Section 6: Contact Section */
+.contact-section {
+  background-color: #242725;
+  /* Updated background color */
+  padding: 120px 0;
+  color: #F6F4E3 !important;
+}
+
+.contact-section h2 {
+  color: #F6F4E3 !important;
+  font-family: 'Anton', sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.contact-section p {
+  color: #F6F4E3 !important;
+}
+
+.contact-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 80px;
+  width: 100%;
+  margin: 0;
+  padding: 0 40px;
+}
+
+.contact-content {
+  flex: 1;
+  max-width: 600px;
+  text-align: left;
+}
+
+.contact-content .section-title {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2.5rem, 10vw, 5rem);
+  line-height: 0.95;
+  margin-bottom: 35px;
+  text-transform: uppercase;
+}
+
+.contact-content .section-description {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.1rem, 4vw, 1.25rem);
+  line-height: 1.5;
+  max-width: 520px;
+}
+
+.contact-form-card {
+  flex: 1;
+  background-color: #F6F4E3;
+  /* Cream color for the card */
+  color: #242725;
+  padding: 60px;
+  /* More room */
+  border-radius: 20px;
+  border: 2px solid #242725;
+  /* Thicker border */
+  max-width: 650px;
+}
+
+.contact-card-title {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.1rem;
+  margin-bottom: 35px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.interest-label {
+  font-weight: 800;
+  font-size: 0.85rem;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.interest-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.checkbox-item input[type="checkbox"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid #242725;
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
+}
+
+.checkbox-item input[type="checkbox"]:checked {
+  background-color: #242725;
+}
+
+.checkbox-item input[type="checkbox"]:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 12px;
+}
+
+.contact-form-card .input-field label {
+  font-weight: 800;
+  font-size: 0.75rem;
+  /* Smaller labels like waitlist */
+  color: #242725;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.contact-form-card .input-field input,
+.contact-form-card .input-field textarea {
+  border: 1px solid #242725;
+  border-radius: 4px;
+  padding: 10px 12px;
+  background-color: transparent;
+  width: 100%;
+  font-family: 'Montserrat', sans-serif;
+  color: #242725;
+}
+
+.contact-form-card .input-field textarea {
+  min-height: 45px;
+  /* Single line feel from image */
+  resize: vertical;
+}
+
+.send-btn {
+  display: block;
+  background-color: #2D1B14;
+  color: white;
+  border: none;
+  padding: 15px 50px;
+  border-radius: 50px;
+  font-family: 'Anton', sans-serif;
+  font-weight: 400;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin: 30px auto 0;
+  transition: opacity 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.send-btn:hover {
+  opacity: 0.9;
+}

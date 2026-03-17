@@ -1,0 +1,1242 @@
+@media (max-width: 1024px) {
+
+  .waitlist-flex,
+  .story-flex,
+  .contact-flex,
+  .presale-flex {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .waitlist-content,
+  .contact-content {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .presale-content {
+    padding-right: 0;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-column.left {
+    border-right: none;
+    border-bottom: 2.2px solid #372720;
+  }
+
+  .about-images {
+    display: none;
+    /* Hide side images on small screens for better flow */
+  }
+
+  .story-images {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  /* Mobile Menu Overlay */
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100vh;
+    background: #F9F5F2;
+    z-index: 1050;
+    transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .mobile-menu.open {
+    left: 0;
+  }
+
+  .mobile-links {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 40px;
+  }
+
+  .mobile-links a {
+    text-decoration: none;
+    color: #372720;
+    font-family: 'Anton', sans-serif;
+    font-size: 2.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .mobile-cta {
+    margin-top: 20px;
+    background: #372720;
+    color: white !important;
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-size: 1.2rem !important;
+  }
+
+  .waitlist-content .section-title,
+  .story-content .section-title,
+  .about-section .section-title,
+  .presale-menu-section .section-title {
+    font-size: 2.5rem;
+  }
+
+  .waitlist-card,
+  .contact-form-card {
+    padding: 30px 20px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .footer-column {
+    padding: 40px 20px;
+  }
+
+  .footer-nav {
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .subscribe-form {
+    flex-direction: column;
+    gap: 10px;
+    border: none;
+    padding: 0;
+  }
+
+  .subscribe-form input {
+    border: 1px solid #372720;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .subscribe-btn {
+    width: 100%;
+    justify-content: center;
+    border: 1px solid #372720;
+  }
+
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .container,
+  .nav-container {
+    padding: 0 20px;
+  }
+
+  .bread-link {
+    white-space: normal;
+    /* Allow text to wrap on mobile */
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  .sub-header-content {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .search-bar {
+    width: 100%;
+  }
+}
+
+/* --- Section 2 Ownership Refinement (Mockup Match) --- */
+.founding-member.ownership-movement-unified {
+  background-color: #421C15 !important;
+  color: white !important;
+  padding: 120px 0;
+  text-align: center;
+}
+
+.anton-font {
+  font-family: 'Anton', sans-serif !important;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+/* Restoring standalone Section 3 styles */
+.waitlist-section.ownership-movement {
+  background-color: #421C15 !important;
+  color: white !important;
+  padding: 100px 0;
+}
+
+.ownership-intro-block {
+  max-width: 900px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.ownership-intro-block .section-title {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.05;
+  margin-bottom: 30px;
+}
+
+.ownership-intro-block .section-description {
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 40px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.intro-actions {
+  margin-top: 40px;
+}
+
+.bylaws-btn {
+  display: inline-block;
+  background-color: #F6F4E3;
+  color: #421C15 !important;
+  padding: 18px 45px;
+  border-radius: 50px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  transition: transform 0.3s ease;
+}
+
+.tiers-grid {
+  display: flex;
+  gap: 30px;
+  margin-top: 80px;
+  align-items: stretch;
+}
+
+.tiers-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  flex: 3;
+}
+
+.tier-card {
+  border: 1px solid white;
+  padding: 40px 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  background: transparent;
+}
+
+.tier-card h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.2rem;
+  line-height: 1.2;
+  margin-bottom: 25px;
+}
+
+.tier-card h3 span {
+  font-weight: 400;
+  font-size: 0.9rem;
+  display: block;
+  margin-top: 5px;
+}
+
+.tier-body p {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.mockup-perks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.tier-price {
+  font-family: 'Anton', sans-serif;
+  font-size: 4rem;
+  margin-top: 30px;
+  line-height: 1;
+}
+
+/* Membership Widget Refinement */
+.membership-widget {
+  background: white;
+  color: #372720;
+  padding: 30px;
+  border-radius: 15px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.widget-header span {
+  font-weight: 800;
+  font-size: 0.95rem;
+  display: block;
+  line-height: 1.3;
+  margin-bottom: 15px;
+}
+
+.share-inputs {
+  background: #f0f0f0;
+  padding: 5px;
+  border-radius: 50px;
+  display: flex;
+  gap: 5px;
+  margin-bottom: 25px;
+}
+
+.share-inputs input {
+  border: none;
+  background: transparent;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  text-align: center;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.share-inputs input.active {
+  background: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.unlock-status {
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.tier-badge-mockup {
+  background: #fdf6c6;
+  color: #372720;
+  padding: 10px 18px;
+  display: inline-block;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  letter-spacing: 0.05em;
+}
+
+.scrollable-perks {
+  max-height: 180px;
+  overflow-y: auto;
+  text-align: left;
+  padding-right: 10px;
+  margin-top: 10px;
+}
+
+.scrollable-perks::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollable-perks::-webkit-scrollbar-thumb {
+  background: rgba(55, 39, 32, 0.2);
+  border-radius: 10px;
+}
+
+.cumulative-perks-list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.cumulative-perks-list li {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  margin-bottom: 8px;
+  color: #372720;
+  font-weight: 500;
+  display: flex;
+  align-items: flex-start;
+}
+
+.cumulative-perks-list li::before {
+  content: "•";
+  margin-right: 8px;
+  color: #c4a163;
+}
+
+.cumulative-perks-list li.perk-category {
+  font-weight: 800;
+  font-size: 0.75rem;
+  color: #c4a163;
+  margin-bottom: 12px;
+  margin-top: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cumulative-perks-list li.perk-category::before {
+  display: none;
+}
+
+.cumulative-perks-list li.perk-category:first-of-type {
+  margin-top: 0;
+}
+
+.cumulative-perks-list li.perk-divider {
+  height: 1px;
+  background: rgba(55, 39, 32, 0.1);
+  margin: 15px 0;
+}
+
+.cumulative-perks-list li.perk-divider::before {
+  display: none;
+}
+
+/* Share Option Circle */
+.share-option {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: 700;
+  background: white;
+  transition: all 0.2s ease;
+  color: #372720;
+}
+
+.share-option.active {
+  background: #372720;
+  color: white;
+  border-color: #372720;
+}
+
+.custom-share-container input {
+  width: 42px !important;
+  height: 42px !important;
+  border-radius: 50% !important;
+  border: 1px solid #ddd !important;
+  text-align: center !important;
+  font-weight: 700 !important;
+  background: white !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  padding: 0 !important;
+  color: #372720 !important;
+  font-size: 1rem !important;
+  appearance: textfield;
+  /* Remove arrows */
+  -moz-appearance: textfield;
+}
+
+.custom-share-container input::-webkit-outer-spin-button,
+.custom-share-container input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.custom-share-container input::placeholder {
+  color: #372720;
+  font-size: 1.4rem;
+  line-height: 42px;
+}
+
+/* Keyboard Input Circle */
+.custom-share-container.keyboard-input input {
+  width: 42px !important;
+  height: 42px !important;
+  border-radius: 50% !important;
+  border: 1px solid #ddd !important;
+  text-align: center !important;
+  font-weight: 700 !important;
+  background: white !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  padding: 0 !important;
+  color: #372720 !important;
+  font-size: 1rem !important;
+  appearance: textfield;
+  -moz-appearance: textfield;
+  outline: none;
+}
+
+.custom-share-container.keyboard-input input::-webkit-outer-spin-button,
+.custom-share-container.keyboard-input input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.custom-share-container.keyboard-input input::placeholder {
+  color: #372720;
+  font-size: 1.4rem;
+  line-height: 42px;
+}
+
+.custom-share-container.keyboard-input input.active {
+  background: #372720 !important;
+  color: white !important;
+  border-color: #372720 !important;
+}
+
+.custom-share-container.keyboard-input input.active::placeholder {
+  color: transparent !important;
+}
+
+.community-gold-founding {
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1.4;
+  margin-bottom: 25px;
+}
+
+.widget-footer {
+  margin-top: auto;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+  margin-bottom: 15px;
+}
+
+.checkout-btn-mockup {
+  width: 100%;
+  background: #1a1a1a;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 8px;
+  font-weight: 800;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.community-note-mockup {
+  font-size: 0.7rem;
+  color: #888;
+}
+
+
+
+@media (max-width: 1200px) {
+  .tiers-grid {
+    flex-direction: column;
+  }
+
+  .tiers-wrapper {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+/* Adjust card headlines to accommodate "perks" label */
+.tier-card h3 {
+  position: relative;
+}
+
+.tier-card h3 span.perks-label {
+  display: block;
+  font-size: 0.8rem;
+  color: #c4a163;
+  text-transform: uppercase;
+  margin-top: 5px;
+}
+
+/* ==========================================================================
+   WOOCOMMERCE CHECKOUT STYLING
+   Overrides default WooCommerce styles to match the React landing page theme.
+   ========================================================================== */
+
+/* Darken standard body text on checkout for readability */
+.woocommerce-checkout {
+  color: #372720;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #F9F5F2;
+}
+
+/* Ensure WooCommerce page wrapper aligns with theme */
+.woocommerce-checkout .woocommerce {
+  max-width: 1200px;
+  margin: 120px auto 60px;
+  /* Offset for fixed navbar */
+  padding: 0 40px;
+  display: grid;
+  gap: 60px;
+}
+
+/* Flex layout for larger screens: Forms left (60%), Order/Payment right (40%) */
+@media (min-width: 1024px) {
+  .woocommerce-checkout .woocommerce {
+    grid-template-columns: 1.5fr 1fr;
+    align-items: flex-start;
+  }
+}
+
+/* Form Headers (Billing, Shipping, Order Review) */
+.woocommerce-checkout h3 {
+  font-family: 'Anton', sans-serif;
+  font-size: 2.2rem;
+  color: #372720;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid #372720;
+  padding-bottom: 15px;
+}
+
+/* Form Styling - Matching the React Contact Form */
+.woocommerce-checkout form .form-row {
+  margin-bottom: 20px;
+}
+
+.woocommerce-checkout form .form-row label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: #372720;
+  margin-bottom: 8px;
+  display: block;
+  text-transform: uppercase;
+}
+
+.woocommerce-checkout form .form-row input[type="text"],
+.woocommerce-checkout form .form-row input[type="email"],
+.woocommerce-checkout form .form-row input[type="tel"],
+.woocommerce-checkout form .form-row textarea,
+.woocommerce-checkout form .form-row select,
+.select2-container .select2-selection--single {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #372720;
+  background-color: transparent;
+  font-size: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 4px;
+  color: #372720;
+  box-sizing: border-box;
+}
+
+/* Select2 Specific Fixes */
+.select2-container .select2-selection--single {
+  height: auto !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  line-height: normal;
+  color: #372720;
+  padding-left: 0;
+}
+
+/* Order Review Table */
+.woocommerce-checkout #order_review_heading {
+  margin-top: 0;
+}
+
+.woocommerce-checkout table.shop_table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+  border: none;
+  border-radius: 0;
+}
+
+.woocommerce-checkout table.shop_table th,
+.woocommerce-checkout table.shop_table td {
+  padding: 15px 0;
+  border-top: none;
+  border-bottom: 1px solid rgba(55, 39, 32, 0.2);
+  color: #372720;
+}
+
+.woocommerce-checkout table.shop_table th {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+.woocommerce-checkout table.shop_table td.product-total,
+.woocommerce-checkout table.shop_table th.product-total {
+  text-align: right;
+}
+
+.woocommerce-checkout table.shop_table tfoot th {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.05em;
+  font-weight: 400;
+}
+
+.woocommerce-checkout table.shop_table tfoot td {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: #c4a163;
+  text-align: right;
+}
+
+.woocommerce-checkout table.shop_table tr.order-total th {
+  font-size: 1.6rem;
+}
+
+.woocommerce-checkout table.shop_table tr.order-total td strong {
+  font-size: 1.6rem;
+  color: #372720;
+}
+
+/* Payment Section Styling (Including Stripe) */
+#payment {
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+  border: 1px solid rgba(55, 39, 32, 0.1);
+}
+
+#payment ul.payment_methods {
+  border-bottom: 1px solid rgba(55, 39, 32, 0.2);
+  padding: 0 0 20px 0;
+  margin: 0 0 20px 0;
+  list-style: none;
+}
+
+#payment ul.payment_methods li {
+  margin-bottom: 15px;
+}
+
+#payment ul.payment_methods li label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  color: #372720;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#payment div.payment_box {
+  background-color: #F9F5F2;
+  border: 1px solid rgba(55, 39, 32, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 15px;
+  color: #555;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+}
+
+#payment div.payment_box::before {
+  display: none;
+  /* Hide default WooCommerce triangle */
+}
+
+/* Stripe Specific Element Overrides */
+.wc-stripe-elements-field,
+.StripeElement,
+.stripe-card-group {
+  background-color: transparent !important;
+  border: 1px solid #372720 !important;
+  border-radius: 4px !important;
+  padding: 12px 15px !important;
+  margin-top: 10px;
+}
+
+/* Place Order Button */
+#payment #place_order {
+  width: 100%;
+  background-color: #3F2320;
+  color: #f6f4e3;
+  border: none;
+  padding: 20px;
+  border-radius: 8px;
+  font-family: 'Anton', sans-serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: opacity 0.3s ease, background-color 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  float: none;
+}
+
+#payment #place_order:hover {
+  background-color: #2D1B14;
+  opacity: 1;
+}
+
+/* Notices and Errors */
+.woocommerce-error {
+  background-color: #ffe6e6;
+  border: 1px solid #ff4d4d;
+  color: #cc0000;
+  border-radius: 8px;
+  padding: 15px 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  list-style: none;
+}
+
+.woocommerce-info {
+  background-color: white;
+  border-top: 3px solid #372720;
+  color: #372720;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  padding: 15px 20px;
+}
+
+.woocommerce-info a {
+  color: #c4a163;
+  text-decoration: underline;
+}
+
+/* Mobile Adjustments for Checkout */
+@media (max-width: 768px) {
+  .woocommerce-checkout .woocommerce {
+    padding: 0 20px;
+    margin-top: 100px;
+    gap: 40px;
+  }
+
+  .woocommerce-checkout h3 {
+    font-size: 1.8rem;
+  }
+
+  #payment {
+    padding: 20px 15px;
+  }
+}
+
+/* --- Ultra-Wide Responsiveness (2K / 4K Support) --- */
+
+@media (min-width: 2000px) {
+  .container {
+    max-width: 1600px;
+  }
+
+  .nav-container {
+    max-width: 1700px;
+  }
+
+  .section-heading {
+    font-size: clamp(2.2rem, 5vw, 3.5rem) !important;
+  }
+
+  .section-subtext {
+    font-size: clamp(1rem, 2vw, 1.2rem) !important;
+    max-width: 800px;
+  }
+
+  .bread-card {
+    aspect-ratio: 3 / 4;
+  }
+
+  .bread-content {
+    flex: 0 0 450px;
+  }
+}
+
+@media (min-width: 3000px) {
+  .container {
+    max-width: 2200px;
+  }
+
+  .nav-container {
+    max-width: 2400px;
+  }
+
+  .section-heading {
+    font-size: clamp(3.5rem, 6vw, 5rem) !important;
+  }
+
+  .section-subtext {
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem) !important;
+    max-width: 1000px;
+  }
+
+  .bread-content {
+    flex: 0 0 600px;
+  }
+
+  .bread-link {
+    font-size: 1.4rem;
+  }
+
+  .arrow-span {
+    font-size: 2rem;
+  }
+
+  .bread-card {
+    aspect-ratio: 3 / 4;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.6rem 0 !important;
+  }
+  
+  .product-sub-header {
+    top: 68px !important; /* Aligned below mobile navbar */
+  }
+
+  /* Cart Mobile Layout Fixes */
+  .cart-header-top {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+    padding-bottom: 30px;
+  }
+
+  .cart-title-refined {
+    position: static;
+    transform: none;
+    font-size: 1.2rem;
+    order: -1; /* Title first */
+  }
+
+  .back-to-store-link {
+    font-size: 0.7rem;
+  }
+
+  .header-spacer {
+    display: none;
+  }
+
+  .cart-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .cart-item-row {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .cart-item-info {
+    flex-direction: column;
+  }
+
+  .cart-header-labels {
+    display: none;
+  }
+}
+/* --- Mission Section Styles --- */
+.mission-section {
+  padding: 120px 0;
+  background-color: #fdfbf7;
+  color: #372720;
+  border-top: 1px solid rgba(55, 39, 32, 0.1);
+}
+
+.mission-main-title {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  letter-spacing: 0.05em;
+  text-align: center;
+  margin-bottom: 80px;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.mission-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 80px;
+  margin-bottom: 100px;
+  align-items: start;
+}
+
+.mission-sub-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  letter-spacing: -0.01em;
+  position: relative;
+  display: inline-block;
+}
+
+.mission-sub-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background-color: #372720;
+}
+
+.mission-sub-title.centered {
+  display: block;
+  text-align: center;
+}
+
+.mission-sub-title.centered::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.mission-lead {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  margin-bottom: 25px;
+  color: #242725;
+}
+
+.mission-p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.philosophy-intro {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.15rem;
+  font-style: italic;
+  margin-bottom: 30px;
+}
+
+.philosophy-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 40px;
+}
+
+.philosophy-list li {
+  margin-bottom: 18px;
+  padding-left: 30px;
+  position: relative;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.philosophy-list li::before {
+  content: 'â†’';
+  position: absolute;
+  left: 0;
+  color: #372720;
+  font-weight: bold;
+}
+
+.empowerment-box {
+  background: #f1ede1;
+  padding: 30px;
+  border-left: 4px solid #372720;
+}
+
+.empowerment-box p {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+.empowerment-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.empowerment-tags span {
+  background: #372720;
+  color: white;
+  padding: 6px 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+}
+
+.promise-section {
+  background: #372720;
+  color: #f6f4e3;
+  padding: 80px 40px;
+  border-radius: 4px;
+  margin-bottom: 100px;
+  text-align: center;
+}
+
+.promise-section .mission-sub-title {
+  color: #f6f4e3;
+}
+
+.promise-section .mission-sub-title::after {
+  background-color: #f6f4e3;
+}
+
+.promise-tagline {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.25rem;
+  margin: 30px 0 50px;
+  font-weight: 300;
+}
+
+.promise-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-bottom: 50px;
+}
+
+.promise-card {
+  padding: 0 20px;
+}
+
+.promise-icon {
+  width: 40px;
+  height: 40px;
+  background: #f6f4e3;
+  color: #372720;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+}
+
+.promise-card h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  letter-spacing: 0.02em;
+}
+
+.promise-card p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.promise-footer {
+  font-family: 'Open Sans', sans-serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  max-width: 800px;
+  margin: 0 auto;
+  opacity: 0.8;
+}
+
+.audience-grid-v2 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.audience-card {
+  background: white;
+  padding: 40px;
+  border: 1px solid rgba(55, 39, 32, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.audience-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.audience-card h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: #372720;
+}
+
+.audience-card p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #666;
+  margin-bottom: 25px;
+}
+
+.audience-perks {
+  list-style: none;
+  padding: 0;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+
+.audience-perks li {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+  color: #372720;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.audience-perks li::before {
+  content: 'âœ“';
+  color: #2D5A43;
+}
+
+@media (max-width: 1024px) {
+  .mission-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+  .promise-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .audience-grid-v2 {
+    grid-template-columns: 1fr;
+  }
+}

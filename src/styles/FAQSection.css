@@ -1,0 +1,122 @@
+/* --- Main FAQ Section (Brown) --- */
+.faq-section {
+  background-color: white;
+  padding: 100px 0;
+  width: 100%;
+}
+
+.faq-section .section-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 2.2rem;
+  color: #372720;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+.faq-section .faq-item {
+  border-top: 1px solid #242725;
+  color: #372720;
+}
+
+.faq-section .faq-item:last-child {
+  border-bottom: 1px solid #242725;
+}
+
+.faq-section .faq-question h3 {
+  color: #372720;
+}
+
+.faq-section .faq-answer {
+  color: #372720;
+}
+
+/* --- Ownership FAQ Section (White) --- */
+.faq-section-new {
+  padding: 80px 0;
+  width: 100%;
+}
+
+.faq-section-new .faq-main-title {
+  font-family: 'Anton', sans-serif;
+  font-weight: 400;
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 40px;
+  text-align: left;
+  letter-spacing: 0.03em;
+}
+
+.faq-section-new .faq-item {
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+.faq-section-new .faq-item:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.faq-section-new .faq-question h3 {
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  text-align: left;
+}
+
+.faq-section-new .faq-answer {
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  opacity: 0.9;
+  text-align: left;
+}
+
+/* Common FAQ Styles */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.faq-item {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 0;
+}
+
+.faq-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.faq-answer-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+}
+
+.faq-item.open .faq-answer-wrapper {
+  max-height: 500px; /* Adjust based on content */
+}
+
+.faq-item.open .faq-icon {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 900px;
+  padding-bottom: 25px;
+}

@@ -1,0 +1,140 @@
+/* Now In Season Section (Grid View) */
+.now-in-season-grid-section {
+  background-color: #F9F5F2;
+  padding: 80px 0;
+}
+
+.section-title-new {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: #2D1B14;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.menu-category-block {
+  margin-bottom: 80px;
+}
+
+.category-title-main {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.8rem;
+  color: #2D1B14;
+  text-align: center;
+  margin-bottom: 40px;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.category-title-main::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: #c4a163;
+}
+
+.products-grid-new {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.product-card-new {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+.product-card-new:hover {
+  transform: translateY(-5px);
+}
+
+.product-img-frame {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.product-img-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-details-new {
+  padding: 25px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.p-name {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.15rem;
+  margin-bottom: 10px;
+  color: #2D1B14;
+}
+
+.p-price {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: #c4a163;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.p-perks {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 25px 0;
+  font-size: 0.85rem;
+  color: #666;
+  line-height: 1.4;
+}
+
+.p-perks li {
+  margin-bottom: 8px;
+}
+
+.order-btn-new {
+  margin-top: auto;
+  background: #2D1B14;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-family: 'Anton', sans-serif;
+  cursor: pointer;
+  width: 100%;
+  letter-spacing: 0.05em;
+  transition: background 0.3s ease;
+}
+
+.order-btn-new:hover {
+  background: #c4a163;
+}
+
+.bundles-category .product-card-new {
+  border: 2px solid #c4a163;
+}
+
+@media (max-width: 1024px) {
+  .products-grid-new {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .products-grid-new {
+    grid-template-columns: 1fr;
+  }
+}

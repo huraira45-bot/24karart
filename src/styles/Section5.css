@@ -1,0 +1,105 @@
+/* Section 5: About Section */
+.about-section {
+  background-color: #F6F4E3;
+  padding: 100px 0;
+  text-align: center;
+}
+
+.about-section .section-title {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(1.8rem, 8vw, 3.8rem);
+  /* Reduced from 6rem max */
+  color: #242725;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+}
+
+.about-content {
+  max-width: 900px;
+  margin: 0 auto 80px;
+}
+
+.about-content p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  /* Made bold */
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.discover-btn {
+  margin: 0 auto;
+  background-color: #2D1B14;
+  /* Matches other brown buttons */
+  color: #F6F4E3;
+  padding: 15px 40px;
+  border: none;
+  border-radius: 50px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: opacity 0.3s ease;
+}
+
+.discover-btn:hover {
+  opacity: 0.9;
+}
+
+.carousel-container {
+  width: 100%;
+  overflow: hidden;
+  padding: 40px 0;
+  background-color: #F6F4E3;
+  position: relative;
+}
+
+.carousel-track {
+  display: flex;
+  width: max-content;
+  animation: scroll 60s linear infinite;
+  gap: 30px;
+  align-items: center;
+  /* Center images of different heights */
+}
+
+.carousel-track:hover {
+  animation-play-state: paused;
+}
+
+.carousel-image {
+  flex-shrink: 0;
+  object-fit: cover;
+  border-radius: 0;
+  /* Changed to sharp corners */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.carousel-image.horizontal {
+  width: 500px;
+  height: 350px;
+}
+
+.carousel-image.vertical {
+  width: 320px;
+  height: 500px;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-image {
+    width: 280px;
+    height: 380px;
+  }
+}

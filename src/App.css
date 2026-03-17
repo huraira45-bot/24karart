@@ -39,10 +39,14 @@ body {
 
 .navbar.scrolled,
 .menu-view .navbar,
-.product-view .navbar {
-  background: white;
+.product-view .navbar,
+.cart-view .navbar {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: 0.8rem 0;
-  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .menu-view .navbar .nav-logo img,
@@ -139,6 +143,39 @@ body {
 .navbar.scrolled .nav-btn.giftcard {
   color: #242725 !important;
   border: none;
+}
+
+.nav-cart {
+  position: relative;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.cart-icon {
+  font-size: 1.4rem;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: #372720;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid white;
+}
+
+.navbar.scrolled .cart-badge {
+  background: #242725;
 }
 
 /* Mobile Toggle - Improved Hit Area & Glass Effect */
@@ -2002,6 +2039,7 @@ body {
   color: white;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
+  text-align: left;
 }
 
 .faq-section-new .faq-answer {
@@ -2009,6 +2047,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
   opacity: 0.9;
+  text-align: left;
 }
 
 /* Common FAQ Styles */
@@ -2341,7 +2380,7 @@ body {
 
 @media (max-width: 768px) {
   .menu-page-container {
-    padding-top: 240px; /* Adjusted for mobile header stack */
+    padding-top: 280px; /* Increased to clear stacked mobile header */
   }
 }
 

@@ -1,0 +1,209 @@
+/* ProductSubHeader is defined further down under New Menu Page Styles */
+
+.sub-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.now-in-season {
+  font-family: 'Anton', sans-serif;
+  font-size: 2rem;
+  color: #333;
+  margin: 0;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  padding: 5px 20px;
+  width: 40%;
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  flex: 1;
+  padding: 8px;
+  font-size: 0.9rem;
+}
+
+.search-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+}
+
+.cart-total {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Product Grid */
+.product-grid-section {
+  padding: 40px 0;
+  background: white;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 30px;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-image-wrapper {
+  position: relative;
+  aspect-ratio: 1;
+  background: #f9f9f9;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.product-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.add-to-cart-plus {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #1e6b3e;
+  /* Dark green like image */
+  color: white;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-info {
+  text-align: left;
+}
+
+.product-price {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.product-name {
+  font-family: 'Anton', sans-serif;
+  font-size: 1rem;
+  margin: 5px 0;
+  color: #333;
+  text-transform: uppercase;
+}
+
+.product-desc {
+  font-size: 0.75rem;
+  color: #666;
+  line-height: 1.4;
+}
+
+/* Bread Subscription Section */
+.bread-subscription {
+  padding: 80px 0;
+  background: white;
+}
+
+.subscription-flex {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+.subscription-content {
+  flex: 1;
+}
+
+.subscription-title {
+  font-family: 'Anton', sans-serif;
+  font-size: 3.5rem;
+  line-height: 1;
+  color: #333;
+  margin-bottom: 40px;
+}
+
+.program-item {
+  margin-bottom: 30px;
+}
+
+.program-item h4 {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.program-item p {
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.order-now-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  color: #333;
+}
+
+.subscription-image {
+  flex: 1.2;
+}
+
+.subscription-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+@media (max-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .subscription-flex {
+    flex-direction: column;
+  }
+
+  .search-bar {
+    width: 100%;
+    order: 2;
+    margin-top: 15px;
+  }
+
+  .sub-header-content {
+    flex-wrap: wrap;
+  }
+}

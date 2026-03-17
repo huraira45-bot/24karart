@@ -1,0 +1,193 @@
+/* --- Footer --- */
+.main-footer {
+  background-color: white;
+  color: #242725;
+  width: 100%;
+}
+
+.footer-banner {
+  width: 100%;
+  height: clamp(200px, 25vh, 350px);
+  background-size: cover;
+  background-position: center 85%;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid #242725;
+  border-bottom: 2px solid #242725;
+}
+
+.banner-text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.8rem, 5vw, 4rem);
+  color: #242725;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  z-index: 2;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  width: 100%;
+  border-bottom: 1px solid #242725;
+}
+
+.footer-column {
+  padding: 60px 80px;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-column.left {
+  border-right: 1px solid #242725;
+}
+
+.column-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: #242725;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+}
+
+.footer-nav a {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: #242725;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: opacity 0.3s ease;
+}
+
+.footer-nav a:hover {
+  opacity: 0.7;
+}
+
+.footer-contact-info {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
+  color: #242725;
+  line-height: 1.8;
+}
+
+.footer-contact-info .copyright {
+  margin-bottom: 20px;
+}
+
+.footer-contact-info .address {
+  margin-bottom: 25px;
+}
+
+.operating-details p {
+  margin: 0 0 8px 0;
+  font-size: 0.95rem;
+}
+
+.newsletter-section {
+  margin-bottom: 40px;
+}
+
+.newsletter-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: #242725;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+}
+
+.newsletter-desc {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
+  color: #242725;
+  margin-bottom: 30px;
+}
+
+.subscribe-form {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 40px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.subscribe-form input {
+  flex: 1;
+  padding: 15px 0;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.1rem;
+  color: #242725;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #242725;
+  outline: none;
+}
+
+.subscribe-form input::placeholder {
+  color: rgba(36, 39, 37, 0.6);
+}
+
+.subscribe-btn {
+  background: transparent;
+  border: none;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: #242725;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 0 15px 20px;
+  transition: opacity 0.3s ease;
+}
+
+.subscribe-btn span {
+  font-size: 1.5rem;
+}
+
+.subscribe-btn:hover {
+  opacity: 0.7;
+}
+
+.footer-brand {
+  margin-top: auto;
+}
+
+.footer-logo-img {
+  width: 100px;
+  height: auto;
+}
+
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-column.left {
+    border-right: none;
+    border-bottom: 1px solid #242725;
+  }
+
+  .footer-column {
+    padding: 60px 40px;
+  }
+}
